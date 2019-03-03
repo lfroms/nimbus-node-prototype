@@ -1,34 +1,12 @@
 import fetch from 'node-fetch';
-import { parseString } from 'xml2js';
 
-function parseSiteData(string: string) {
-  return new Promise(function(resolve, reject) {
-    parseString(
-      string,
-      {
-        charkey: 'value',
-        mergeAttrs: true,
-        explicitArray: false
-      },
-      function(err, result) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(result.siteData);
-        }
-      }
-    );
-  });
-}
+import { dateTime } from './resolvers/field';
+import { parseSiteData } from './helpers';
 
 interface SiteArgs {
   code: number;
   area: string;
   language?: string;
-}
-
-interface DateTimeArgs {
-  zone: string;
 }
 
 export default {
@@ -48,12 +26,18 @@ export default {
     }
   },
   CurrentConditions: {
-    dateTime(obj: any, args: DateTimeArgs) {
-      if (!obj.dateTime) {
-        return null;
-      }
-
-      return obj.dateTime.find((obj: any) => obj.zone === args.zone);
-    }
+    dateTime
+  },
+  ForecastGroup: {
+    dateTime
+  },
+  HourlyForecastGroup: {
+    dateTime
+  },
+  RiseSet: {
+    dateTime
+  },
+  SiteData: {
+    dateTime
   }
 };

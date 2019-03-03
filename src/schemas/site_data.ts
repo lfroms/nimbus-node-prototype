@@ -71,7 +71,7 @@ export default gql`
 
   type RiseSet {
     disclaimer: String!
-    dateTime: [DateTime!]!
+    dateTime(zone: String!): DateTime
   }
 
   type CloudPrecip {
@@ -181,7 +181,7 @@ export default gql`
 
   type ForecastGroup {
     forecast: [Forecast!]!
-    dateTime: [DateTime!]!
+    dateTime(zone: String!): DateTime
     regionalNormals: RegionalNormals!
   }
 
@@ -219,7 +219,7 @@ export default gql`
 
   type HourlyForecastGroup {
     hourlyForecast: [HourlyForecast!]
-    dateTime: [DateTime!]
+    dateTime(zone: String!): DateTime
   }
 
   type Pressure {
@@ -282,7 +282,7 @@ export default gql`
     warnings: Warnings!
     almanac: Almanac!
     riseSet: RiseSet!
-    dateTime: [DateTime!]!
+    dateTime(zone: String!): DateTime
     forecastGroup: ForecastGroup!
     hourlyForecastGroup: HourlyForecastGroup!
     license: [String]!
