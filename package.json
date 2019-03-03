@@ -1,0 +1,23 @@
+{
+  "name": "forecast-api",
+  "version": "1.0.0",
+  "description": "GraphQL server for Forecast app",
+  "main": "index.js",
+  "author": "Lukas Romsicki",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "webpack --config webpack.$NODE_ENV.js",
+    "start": "node dist/index"
+  },
+  "devDependencies": {
+    "@types/webpack-env": "^1.13.8",
+    "clean-webpack-plugin": "^1.0.1",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-merge": "^4.2.1",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
