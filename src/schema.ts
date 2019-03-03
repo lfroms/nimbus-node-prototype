@@ -8,6 +8,6 @@ export default gql`
     """
     Get some site data.
     """
-    siteData(code: Int!): SiteData!
+    site(code: Int!): SiteData
   }
 `;

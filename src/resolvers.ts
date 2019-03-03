@@ -23,7 +23,7 @@ function parseSiteData(string: string) {
 
 export default {
   Query: {
-    async siteData(_obj: any, args: any) {
+    async site(_obj: any, args: any) {
       const { code } = args;
 
       const res = await fetch(
