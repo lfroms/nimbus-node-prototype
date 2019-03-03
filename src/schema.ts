@@ -4,6 +4,9 @@ import { default as siteData } from './schemas/site_data';
 export default gql`
   ${siteData}
 
+  """
+  A two or three character province code.
+  """
   enum Area {
     AB
     BC
@@ -28,8 +31,8 @@ export default gql`
 
   type Query {
     """
-    Get some site data.
+    Get weather information for a given station.
     """
-    site(area: Area!, code: Int!, language: Language = e): SiteData!
+    site(area: Area!, code: Int!, language: Language = e): SiteData
   }
 `;

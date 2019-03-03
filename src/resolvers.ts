@@ -21,10 +21,16 @@ function parseSiteData(string: string) {
   });
 }
 
+interface SiteArgs {
+  code: string;
+  area: string;
+  language?: string;
+}
+
 export default {
   Query: {
-    async site(_obj: any, args: any) {
-      const { code, area, language } = args;
+    async site(_obj: any, args: SiteArgs) {
+      const { code, area, language = 'e' } = args;
 
       const paddedSiteCode: String = code.toString().padStart(7, '0');
       const filename = `s${paddedSiteCode}_${language}`;
@@ -39,6 +45,10 @@ export default {
   },
   CurrentConditions: {
     dateTime(obj, args, context, info) {
+      if (!obj.dateTime) {
+        return null;
+      }
+
       return obj.dateTime.find(obj => obj.zone === args.zone);
     }
   }

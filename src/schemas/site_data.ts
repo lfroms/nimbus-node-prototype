@@ -5,7 +5,9 @@ export default gql`
     unitType: String!
     units: String!
     class: String!
-    value: String!
+    value: String
+    year: String
+    period: String
   }
 
   type Precip {
@@ -77,22 +79,23 @@ export default gql`
   }
 
   type IconCode {
-    value: String!
+    value: String
     format: String!
   }
 
   type Pop {
     units: String!
+    value: String
   }
 
   type AbbreviatedForecast {
-    iconCode: IconCode!
-    pop: Pop!
-    textSummary: String!
+    iconCode: IconCode
+    pop: Pop
+    textSummary: String
   }
 
   type Temperatures {
-    temperature: Temperature!
+    temperature: Temperature
     textSummary: String!
   }
 
@@ -116,7 +119,7 @@ export default gql`
   type Wind {
     direction: String!
     bearing: Bearing!
-    index: String!
+    index: String
     rank: String!
     speed: Speed!
     gust: Gust!
@@ -172,8 +175,8 @@ export default gql`
   }
 
   type RegionalNormals {
-    textSummary: String!
-    temperature: [Temperature!]!
+    textSummary: String
+    temperature: [Temperature!]
   }
 
   type ForecastGroup {
@@ -195,6 +198,7 @@ export default gql`
 
   type Humidex {
     unitType: String!
+    value: String!
   }
 
   type Direction {
@@ -214,19 +218,13 @@ export default gql`
   }
 
   type HourlyForecastGroup {
-    hourlyForecast: [HourlyForecast!]!
-    dateTime: [DateTime!]!
-  }
-
-  type Dewpoint {
-    value: String!
-    unitType: String!
-    units: String!
+    hourlyForecast: [HourlyForecast!]
+    dateTime: [DateTime!]
   }
 
   type Pressure {
     tendency: String!
-    value: String!
+    value: String
     unitType: String!
     units: String!
     change: String!
@@ -241,22 +239,23 @@ export default gql`
 
   type Visibility {
     units: String!
-    value: String!
+    value: String
     unitType: String!
   }
 
   type CurrentConditions {
-    iconCode: IconCode!
-    dewpoint: Dewpoint!
-    pressure: Pressure!
-    station: Station!
-    dateTime(zone: String!): DateTime!
-    visibility: Visibility!
-    relativeHumidity: RelativeHumidity!
-    wind: Wind!
-    condition: String!
-    temperature: Temperature!
-    windChill: WindChill!
+    iconCode: IconCode
+    dewpoint: Temperature
+    pressure: Pressure
+    station: Station
+    dateTime(zone: String!): DateTime
+    visibility: Visibility
+    relativeHumidity: RelativeHumidity
+    wind: Wind
+    condition: String
+    temperature: Temperature
+    windChill: WindChill
+    humidex: Humidex
   }
 
   type WarningEvent {
