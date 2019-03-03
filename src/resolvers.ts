@@ -22,9 +22,13 @@ function parseSiteData(string: string) {
 }
 
 interface SiteArgs {
-  code: string;
+  code: number;
   area: string;
   language?: string;
+}
+
+interface DateTimeArgs {
+  zone: string;
 }
 
 export default {
@@ -44,12 +48,12 @@ export default {
     }
   },
   CurrentConditions: {
-    dateTime(obj, args, context, info) {
+    dateTime(obj: any, args: DateTimeArgs) {
       if (!obj.dateTime) {
         return null;
       }
 
-      return obj.dateTime.find(obj => obj.zone === args.zone);
+      return obj.dateTime.find((obj: any) => obj.zone === args.zone);
     }
   }
 };
