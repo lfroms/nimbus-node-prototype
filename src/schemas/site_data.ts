@@ -250,7 +250,7 @@ export default gql`
     dewpoint: Dewpoint!
     pressure: Pressure!
     station: Station!
-    dateTime: [DateTime!]!
+    dateTime(zone: String!): DateTime!
     visibility: Visibility!
     relativeHumidity: RelativeHumidity!
     wind: Wind!

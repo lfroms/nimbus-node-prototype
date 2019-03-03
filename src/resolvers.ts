@@ -24,14 +24,22 @@ function parseSiteData(string: string) {
 export default {
   Query: {
     async site(_obj: any, args: any) {
-      const { code } = args;
+      const { code, area, language } = args;
+
+      const paddedSiteCode: String = code.toString().padStart(7, '0');
+      const filename = `s${paddedSiteCode}_${language}`;
 
       const res = await fetch(
-        `http://dd.weather.gc.ca/citypage_weather/xml/ON/s0000${code}_e.xml`
+        `http://dd.weather.gc.ca/citypage_weather/xml/${area}/${filename}.xml`
       );
       const text = await res.text();
 
       return await parseSiteData(text);
+    }
+  },
+  CurrentConditions: {
+    dateTime(obj, args, context, info) {
+      return obj.dateTime.find(obj => obj.zone === args.zone);
     }
   }
 };
