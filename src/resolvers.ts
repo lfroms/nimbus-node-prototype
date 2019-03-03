@@ -23,12 +23,15 @@ function parseSiteData(string: string) {
 
 export default {
   Query: {
-    siteData: (): any => {
-      return fetch(
-        'http://dd.weather.gc.ca/citypage_weather/xml/ON/s0000430_e.xml'
-      )
-        .then(res => res.text())
-        .then(text => parseSiteData(text));
+    async siteData(_obj: any, args: any) {
+      const { code } = args;
+
+      const res = await fetch(
+        `http://dd.weather.gc.ca/citypage_weather/xml/ON/s0000${code}_e.xml`
+      );
+      const text = await res.text();
+
+      return await parseSiteData(text);
     }
   }
 };

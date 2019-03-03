@@ -271,10 +271,17 @@ export default gql`
     url: String
   }
 
+  type Almanac {
+    temperature: [Temperature!]
+    precipitation: [Precip!]
+    pop: Lop
+  }
+
   type SiteData {
     yesterdayConditions: YesterdayConditions!
     location: Location!
     warnings: Warnings!
+    almanac: Almanac!
     riseSet: RiseSet!
     dateTime: [DateTime!]!
     forecastGroup: ForecastGroup!
