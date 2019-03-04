@@ -5,7 +5,9 @@ import typeDefs from './schema';
 
 const server = new ApolloServer({ resolvers, typeDefs });
 
-server.listen().then(({ url }) => console.log(`Server ready at ${url}. `));
+server
+  .listen({ port: process.env.PORT })
+  .then(({ url }) => console.log(`Server ready at ${url}. `));
 
 if (module.hot) {
   module.hot.accept();
