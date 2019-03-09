@@ -1,13 +1,13 @@
 import fetch from 'node-fetch';
 import { parseSiteData } from '../helpers';
 
-interface SiteArgs {
+interface WeatherArgs {
   code: number;
   region: string;
   language?: string;
 }
 
-export default async function Site(_obj: any, args: SiteArgs) {
+export default async function Weather(_obj: any, args: WeatherArgs) {
   const { code, region, language = 'e' } = args;
 
   const paddedSiteCode: String = code.toString().padStart(7, '0');

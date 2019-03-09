@@ -11,6 +11,16 @@ export default gql`
     """
     Get weather information for a given station.
     """
-    site(region: Region!, code: Int!, language: Language = e): SiteData
+    weather(region: Region!, code: Int!, language: Language = e): SiteData
+
+    """
+    Search for a site given a keyword.
+    """
+    siteByKeyword(keyword: String!): [Site!]
+
+    """
+    Retrieve the entire site list.
+    """
+    allSites: [Site!]
   }
 `;

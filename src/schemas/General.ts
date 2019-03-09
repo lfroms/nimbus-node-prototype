@@ -2,6 +2,16 @@ import { gql } from 'apollo-server';
 
 export default gql`
   """
+  Weather station (site) metadata.
+  """
+  type Site {
+    nameEn: String!
+    nameFr: String!
+    code: String!
+    provinceCode: String!
+  }
+
+  """
   A two or three character province code.
   """
   enum Region {
