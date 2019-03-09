@@ -86,7 +86,7 @@ export default gql`
   """
   type RiseSet {
     disclaimer: String
-    dateTime(zone: String!): DateTime
+    dateTime(zone: String!): [DateTime!]
   }
 
   """

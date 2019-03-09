@@ -1,6 +1,11 @@
 import { Site as site } from './queries';
 
-import { dateTime, forecast, hourlyForecast } from './resolvers/field';
+import {
+  dateTime,
+  forecast,
+  hourlyForecast,
+  riseSetDateTime
+} from './resolvers/field';
 import {
   historicPrecip as multipleHistoricPrecip,
   temperature as multipleTemperature,
@@ -27,7 +32,7 @@ export default {
     dateTime
   },
   RiseSet: {
-    dateTime
+    dateTime: riseSetDateTime
   },
   SiteData: {
     dateTime
