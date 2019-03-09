@@ -7,7 +7,7 @@ interface WeatherArgs {
   language?: string;
 }
 
-export default async function Weather(_obj: any, args: WeatherArgs) {
+export default async function weather(_obj: any, args: WeatherArgs) {
   const { code, region, language = 'e' } = args;
 
   const paddedSiteCode: String = code.toString().padStart(7, '0');
