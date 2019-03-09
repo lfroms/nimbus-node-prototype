@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import { Site as site } from './queries';
 
 import { dateTime, forecast, hourlyForecast } from './resolvers/field';
 import {
@@ -10,29 +10,10 @@ import {
   windChill as multipleWindChill,
   humidex as multipleHumidex
 } from './resolvers/field/ensure_array';
-import { parseSiteData } from './helpers';
-
-interface SiteArgs {
-  code: number;
-  region: string;
-  language?: string;
-}
 
 export default {
   Query: {
-    async site(_obj: any, args: SiteArgs) {
-      const { code, region, language = 'e' } = args;
-
-      const paddedSiteCode: String = code.toString().padStart(7, '0');
-      const filename = `s${paddedSiteCode}_${language}`;
-
-      const res = await fetch(
-        `http://dd.weather.gc.ca/citypage_weather/xml/${region}/${filename}.xml`
-      );
-      const text = await res.text();
-
-      return await parseSiteData(text);
-    }
+    site
   },
   CurrentConditions: {
     dateTime
