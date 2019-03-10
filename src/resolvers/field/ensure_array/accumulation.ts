@@ -1,4 +1,4 @@
-export default function multipleAccumulation(obj: any) {
+export default function accumulation(obj: any) {
   if (!obj.accumulation) {
     return [];
   }

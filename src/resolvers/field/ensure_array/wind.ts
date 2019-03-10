@@ -1,4 +1,4 @@
-export default function multipleWind(obj: any) {
+export default function wind(obj: any) {
   if (!obj.wind) {
     return [];
   }

@@ -1,4 +1,4 @@
-export default function multipleHistoricPrecip(obj: any) {
+export default function historicPrecip(obj: any) {
   if (!obj.precip) {
     return [];
   }

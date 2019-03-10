@@ -1,4 +1,4 @@
-export default function multipleHistoricPrecip(obj: any) {
+export default function precipitation(obj: any) {
   if (!obj.precipitation) {
     return [];
   }

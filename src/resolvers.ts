@@ -14,7 +14,8 @@ import {
   accumulation as multipleAccumulation,
   wind as multipleWind,
   windChill as multipleWindChill,
-  humidex as multipleHumidex
+  humidex as multipleHumidex,
+  warningEvent as multipleWarningEvent
 } from './resolvers/field/ensure_array';
 
 export default {
@@ -68,5 +69,8 @@ export default {
   },
   Site: {
     code
+  },
+  Warnings: {
+    events: multipleWarningEvent
   }
 };

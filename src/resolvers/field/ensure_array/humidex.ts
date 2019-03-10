@@ -1,4 +1,4 @@
-export default function multipleHumidex(obj: any) {
+export default function humidex(obj: any) {
   if (!obj.calculated) {
     return [];
   }

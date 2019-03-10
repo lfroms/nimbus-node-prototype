@@ -1,11 +1,26 @@
 import { gql } from 'apollo-server';
 
 export default gql`
+  enum WarningType {
+    advisory
+    warning
+    watch
+    ended
+    statement
+  }
+
+  enum WarningPriority {
+    urgent
+    high
+    medium
+    low
+  }
+
   type WarningEvent {
     dateTime(zone: String!): DateTime
-    type: String
+    type: WarningType!
     description: String!
-    priority: String!
+    priority: WarningPriority!
   }
 
   type Station {

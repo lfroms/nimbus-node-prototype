@@ -1,4 +1,4 @@
-export default function multipleTemperature(obj: any) {
+export default function temperature(obj: any) {
   if (!obj.temperature) {
     return [];
   }

@@ -1,4 +1,4 @@
-export default function multipleWindChill(obj: any) {
+export default function windChill(obj: any) {
   if (!obj.calculated) {
     return [];
   }
