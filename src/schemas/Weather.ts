@@ -61,7 +61,7 @@ export default gql`
 
   type CalculatedHumidex {
     unitType: String!
-    value: String!
+    value: String
   }
 
   type Pressure {
