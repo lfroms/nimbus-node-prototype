@@ -7,7 +7,7 @@ export default gql`
   type Site {
     nameEn: String!
     nameFr: String!
-    code: String!
+    code: Int!
     provinceCode: String!
   }
 

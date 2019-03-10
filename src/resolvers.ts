@@ -4,7 +4,8 @@ import {
   dateTime,
   forecast,
   hourlyForecast,
-  riseSetDateTime
+  riseSetDateTime,
+  code
 } from './resolvers/field';
 import {
   historicPrecip as multipleHistoricPrecip,
@@ -64,5 +65,8 @@ export default {
   },
   RegionalNormals: {
     temperature: multipleTemperature
+  },
+  Site: {
+    code
   }
 };
