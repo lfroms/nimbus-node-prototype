@@ -1,11 +1,17 @@
-import fetch from 'node-fetch';
+import { Context } from 'apollo-server-core';
 import { parseSiteList } from '../helpers';
+import { EnvironmentCanadaAPI } from '../data_sources';
 
-export default async function allSites(_obj: any) {
-  const res = await fetch(
-    `http://dd.weather.gc.ca/citypage_weather/xml/siteList.xml`
-  );
-  const text = await res.text();
+export default async function allSites(
+  _obj: any,
+  _args: any,
+  context: Context<any>
+) {
+  const {
+    dataSources: { environmentCanadaAPI: api }
+  } = context;
+
+  const text = await (api as EnvironmentCanadaAPI).getSites();
 
   return await parseSiteList(text);
 }

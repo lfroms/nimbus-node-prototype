@@ -2,8 +2,17 @@ import { ApolloServer } from 'apollo-server';
 
 import resolvers from './resolvers';
 import typeDefs from './schema';
+import { EnvironmentCanadaAPI } from './data_sources';
 
-const server = new ApolloServer({ resolvers, typeDefs });
+const server = new ApolloServer({
+  resolvers,
+  typeDefs,
+  dataSources: () => {
+    return {
+      environmentCanadaAPI: new EnvironmentCanadaAPI()
+    };
+  }
+});
 
 server
   .listen({ port: process.env.PORT })

@@ -24,9 +24,9 @@
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {
+    "apollo-datasource-rest": "^0.3.2",
     "apollo-server": "^2.4.8",
     "graphql": "^14.1.1",
-    "node-fetch": "^2.3.0",
     "xml2js": "^0.4.19"
   }
 }

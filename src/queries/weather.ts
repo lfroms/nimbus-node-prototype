@@ -1,22 +1,28 @@
-import fetch from 'node-fetch';
 import { parseSiteData } from '../helpers';
+import { Context } from 'apollo-server-core';
+import { EnvironmentCanadaAPI, Language } from '../data_sources';
 
 interface WeatherArgs {
   code: number;
   region: string;
-  language?: string;
+  language?: Language;
 }
 
-export default async function weather(_obj: any, args: WeatherArgs) {
+export default async function weather(
+  _obj: any,
+  args: WeatherArgs,
+  context: Context<any>
+) {
   const { code, region, language = 'e' } = args;
+  const {
+    dataSources: { environmentCanadaAPI: api }
+  } = context;
 
-  const paddedSiteCode: String = code.toString().padStart(7, '0');
-  const filename = `s${paddedSiteCode}_${language}`;
-
-  const res = await fetch(
-    `http://dd.weather.gc.ca/citypage_weather/xml/${region}/${filename}.xml`
+  const text = await (api as EnvironmentCanadaAPI).getWeather(
+    region,
+    code,
+    language
   );
-  const text = await res.text();
 
   return await parseSiteData(text);
 }
