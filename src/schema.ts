@@ -16,11 +16,11 @@ export default gql`
     """
     Search for a site given a keyword.
     """
-    siteByKeyword(keyword: String!): [Site!]
+    site(keyword: String!): [Site!]
 
     """
     Retrieve the entire site list.
     """
-    allSites: [Site!]
+    sites: [Site!]
   }
 `;

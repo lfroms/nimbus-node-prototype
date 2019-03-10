@@ -1,5 +1,5 @@
 import { Context } from 'apollo-server-core';
-import { parseSiteList } from '../helpers';
+import { parseSiteList, convertCharacterEncoding } from '../helpers';
 import { EnvironmentCanadaAPI } from '../data_sources';
 
 interface SiteByKeywordArgs {
@@ -13,7 +13,7 @@ interface Site {
   provinceCode: string;
 }
 
-export default async function siteByKeyword(
+export default async function site(
   _obj: any,
   args: SiteByKeywordArgs,
   context: Context<any>
@@ -25,7 +25,9 @@ export default async function siteByKeyword(
   } = context;
 
   const text = await (api as EnvironmentCanadaAPI).getSites();
-  const list = (await parseSiteList(text)) as Array<Site>;
+  const convertedText = convertCharacterEncoding(text);
+
+  const list = (await parseSiteList(convertedText)) as Array<Site>;
 
   return list.filter((site: Site) => {
     const { nameEn, nameFr } = site;

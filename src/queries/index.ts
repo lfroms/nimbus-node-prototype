@@ -1,3 +1,3 @@
 export { default as weather } from './weather';
-export { default as allSites } from './allSites';
-export { default as siteByKeyword } from './siteByKeyword';
+export { default as sites } from './sites';
+export { default as site } from './site';

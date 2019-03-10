@@ -1,4 +1,4 @@
-import { parseSiteData } from '../helpers';
+import { parseSiteData, convertCharacterEncoding } from '../helpers';
 import { Context } from 'apollo-server-core';
 import { EnvironmentCanadaAPI, Language } from '../data_sources';
 
@@ -24,5 +24,6 @@ export default async function weather(
     language
   );
 
-  return await parseSiteData(text);
+  const convertedText = convertCharacterEncoding(text);
+  return await parseSiteData(convertedText);
 }

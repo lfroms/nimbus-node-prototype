@@ -1,8 +1,8 @@
 import { Context } from 'apollo-server-core';
-import { parseSiteList } from '../helpers';
+import { parseSiteList, convertCharacterEncoding } from '../helpers';
 import { EnvironmentCanadaAPI } from '../data_sources';
 
-export default async function allSites(
+export default async function sites(
   _obj: any,
   _args: any,
   context: Context<any>
@@ -13,5 +13,6 @@ export default async function allSites(
 
   const text = await (api as EnvironmentCanadaAPI).getSites();
 
-  return await parseSiteList(text);
+  const convertedText = convertCharacterEncoding(text);
+  return await parseSiteList(convertedText);
 }
