@@ -1,4 +1,4 @@
-import { weather, site, sites } from './queries';
+import { weather, sites } from './queries';
 
 import {
   dateTime,
@@ -21,7 +21,6 @@ import {
 export default {
   Query: {
     weather,
-    site,
     sites
   },
   CurrentConditions: {

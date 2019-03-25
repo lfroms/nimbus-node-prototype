@@ -5,9 +5,9 @@ export default gql`
   Weather station (site) metadata.
   """
   type Site {
-    code: String!
+    code: Int!
     name: String!
-    province: String!
+    province: Region!
     latitude: String!
     longitude: String!
   }

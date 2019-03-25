@@ -26,7 +26,7 @@ export default class EnvironmentCanadaAPI extends RESTDataSource {
     return request(`xml/${region}/${filename}.xml`, options);
   }
 
-  async getSites(language: Language = 'e') {
+  async getSites(language: Language) {
     const options: RequestPromiseOptions = {
       baseUrl: this.baseURL
     };

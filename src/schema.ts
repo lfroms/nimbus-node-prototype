@@ -14,13 +14,13 @@ export default gql`
     weather(region: Region!, code: Int!, language: Language = e): SiteData
 
     """
-    Search for a site given a keyword.
+    Retrieve the entire site list or search by coordinate.
     """
-    site(keyword: String!): [Site!]
-
-    """
-    Retrieve the entire site list.
-    """
-    sites(language: Language = e): [Site!]
+    sites(
+      language: Language = e
+      latitude: String
+      longitude: String
+      limit: Int
+    ): [Site!]
   }
 `;
