@@ -14,12 +14,12 @@ export default gql`
     weather(region: Region!, code: Int!, language: Language = e): SiteData
 
     """
-    Retrieve the entire site list or search by coordinate.
+    Retrieve the entire site list or search by coordinates.
     """
     sites(
       language: Language = e
-      latitude: String
-      longitude: String
+      latitude: Float
+      longitude: Float
       limit: Int
     ): [Site!]
   }

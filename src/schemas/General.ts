@@ -8,8 +8,8 @@ export default gql`
     code: Int!
     name: String!
     province: Region!
-    latitude: String!
-    longitude: String!
+    latitude: Float
+    longitude: Float
   }
 
   """
