@@ -1,18 +1,22 @@
 import { Context } from 'apollo-server-core';
-import { parseSiteList, convertCharacterEncoding } from '../helpers';
 import { EnvironmentCanadaAPI } from '../data_sources';
+import { LanguageAbbr } from '../data_sources/EnvironmentCanadaAPI';
+
+interface SiteListArgs {
+  language: LanguageAbbr;
+}
 
 export default async function sites(
   _obj: any,
-  _args: any,
+  args: SiteListArgs,
   context: Context<any>
 ) {
   const {
     dataSources: { environmentCanadaAPI: api }
   } = context;
+  const { language } = args;
 
-  const text = await (api as EnvironmentCanadaAPI).getSites();
-
-  const convertedText = convertCharacterEncoding(text);
-  return await parseSiteList(convertedText);
+  const data = await (api as EnvironmentCanadaAPI).getSites(language);
+  data.shift();
+  return data;
 }

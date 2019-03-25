@@ -12,6 +12,7 @@
     "start": "node dist/index.js"
   },
   "devDependencies": {
+    "@types/csvtojson": "^1.1.5",
     "@types/node-fetch": "^2.1.6",
     "@types/request": "^2.48.1",
     "@types/request-promise-native": "^1.0.15",
@@ -28,6 +29,7 @@
   "dependencies": {
     "apollo-datasource-rest": "^0.3.2",
     "apollo-server": "^2.4.8",
+    "csvtojson": "^2.0.8",
     "graphql": "^14.1.1",
     "iconv-lite": "^0.4.24",
     "request": "^2.88.0",

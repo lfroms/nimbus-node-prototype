@@ -21,6 +21,6 @@ export default gql`
     """
     Retrieve the entire site list.
     """
-    sites: [Site!]
+    sites(language: Language = e): [Site!]
   }
 `;
