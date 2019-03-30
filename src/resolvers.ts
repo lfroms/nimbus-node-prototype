@@ -71,5 +71,8 @@ export default {
   },
   Warnings: {
     events: multipleWarningEvent
+  },
+  WarningEvent: {
+    dateTime
   }
 };
