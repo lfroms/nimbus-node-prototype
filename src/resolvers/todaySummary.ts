@@ -1,11 +1,16 @@
 import { ensureArray } from '../helpers';
 
-const NULL_OBJECT = {
+interface TodaySummary {
+  high: number | null;
+  low: number | null;
+}
+
+const NULL_OBJECT: TodaySummary = {
   high: null,
   low: null
 };
 
-export default function todayRange(obj: any) {
+export default function todaySummary(obj: any): TodaySummary {
   const { forecastGroup } = obj;
 
   if (!forecastGroup) {

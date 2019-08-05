@@ -13,7 +13,7 @@ export default gql`
     hourlyForecast: HourlyForecast
     sun: Sun
     yesterday: Yesterday
-    todayRange: TodayRange
+    todaySummary: TodaySummary
   }
 
   """
@@ -85,7 +85,7 @@ export default gql`
   """
   Describes today's projected high and low temperature.
   """
-  type TodayRange {
+  type TodaySummary {
     high: Float
     low: Float
   }

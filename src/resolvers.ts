@@ -16,7 +16,7 @@ import {
   winds,
   hours,
   hourlyWind,
-  todayRange
+  todaySummary
 } from './resolvers/';
 
 export default {
@@ -33,7 +33,7 @@ export default {
     hourlyForecast,
     sun,
     yesterday,
-    todayRange
+    todaySummary
   },
   CurrentConditions: {
     wind,
