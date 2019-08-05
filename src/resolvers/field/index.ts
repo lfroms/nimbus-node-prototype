@@ -1,5 +1,3 @@
-export { default as dateTime } from './dateTime';
-export { default as riseSetDateTime } from './riseSetDateTime';
-export { default as forecast } from './forecast';
-export { default as hourlyForecast } from './hourlyForecast';
-export { default as code } from './code';
+export { default as time } from './time';
+export { default as yesterdayHigh } from './yesterdayHigh';
+export { default as yesterdayLow } from './yesterdayLow';

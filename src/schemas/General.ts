@@ -7,7 +7,7 @@ export default gql`
   type Site {
     code: Int!
     name: String!
-    province: Region!
+    province: Province!
     latitude: Float
     longitude: Float
   }
@@ -15,7 +15,7 @@ export default gql`
   """
   A two or three character province code.
   """
-  enum Region {
+  enum Province {
     AB
     BC
     HEF
@@ -37,30 +37,8 @@ export default gql`
     f
   }
 
-  type Month {
-    name: String!
-    value: String!
-  }
-
-  type Day {
-    value: String!
-    name: String!
-  }
-
-  type Country {
-    code: String!
-    value: String!
-  }
-
-  type Province {
-    code: String!
-    value: String!
-  }
-
-  type Name {
-    code: String!
-    lat: String!
-    lon: String!
-    value: String!
+  enum Units {
+    imperial
+    metric
   }
 `;

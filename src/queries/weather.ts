@@ -3,8 +3,8 @@ import { Context } from 'apollo-server-core';
 import { EnvironmentCanadaAPI, Language } from '../data_sources';
 
 interface WeatherArgs {
-  code: number;
-  region: string;
+  siteCode: number;
+  province: string;
   language?: Language;
 }
 
@@ -13,17 +13,22 @@ export default async function weather(
   args: WeatherArgs,
   context: Context<any>
 ) {
-  const { code, region, language = 'e' } = args;
+  const { siteCode, province, language = 'e' } = args;
   const {
     dataSources: { environmentCanadaAPI: api }
   } = context;
 
-  const text = await (api as EnvironmentCanadaAPI).getWeather(
-    region,
-    code,
-    language
-  );
+  try {
+    const text = await (api as EnvironmentCanadaAPI).getWeather(
+      province,
+      siteCode,
+      language
+    );
 
-  const convertedText = convertCharacterEncoding(text);
-  return await parseSiteData(convertedText);
+    const convertedText = convertCharacterEncoding(text);
+    return await parseSiteData(convertedText);
+  } catch (err) {
+    // Return no data if an error has occurred.
+    return null;
+  }
 }

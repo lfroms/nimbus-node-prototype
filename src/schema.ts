@@ -1,9 +1,9 @@
 import { gql } from 'apollo-server';
-import { SiteData, General, Weather, Forecast } from './schemas';
+import { WeatherReport, General, Weather, Forecast } from './schemas';
 
 export default gql`
   ${General}
-  ${SiteData}
+  ${WeatherReport}
   ${Weather}
   ${Forecast}
 
@@ -11,7 +11,12 @@ export default gql`
     """
     Get weather information for a given station.
     """
-    weather(region: Region!, code: Int!, language: Language = e): SiteData
+    weather(
+      province: Province!
+      siteCode: Int!
+      units: Units!
+      language: Language = e
+    ): WeatherReport
 
     """
     Retrieve the entire site list or search by coordinates.
