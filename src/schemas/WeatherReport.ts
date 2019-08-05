@@ -33,8 +33,8 @@ export default gql`
     temperature: Float
     humidity: Int
     pressure: Float
-    windChill: Float
-    humidex: Float
+    windChill: Int
+    humidex: Int
     wind: Wind
     visibility: Float
     dewPoint: Float
@@ -51,8 +51,8 @@ export default gql`
   Temperature conditions that are normally observed at a given site.
   """
   type Normals {
-    high: Float
-    low: Float
+    high: Int
+    low: Int
   }
 
   type DailyForecast {
