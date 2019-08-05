@@ -14,6 +14,7 @@
   "devDependencies": {
     "@types/csvtojson": "^1.1.5",
     "@types/geolib": "^2.0.23",
+    "@types/mathjs": "^6.0.1",
     "@types/moment": "^2.13.0",
     "@types/node-fetch": "^2.1.6",
     "@types/request": "^2.48.1",
@@ -35,6 +36,7 @@
     "geolib": "^2.0.24",
     "graphql": "^14.1.1",
     "iconv-lite": "^0.4.24",
+    "mathjs": "^6.0.3",
     "moment": "^2.24.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7",

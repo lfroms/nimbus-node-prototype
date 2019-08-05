@@ -1,5 +1,5 @@
 export default function yesterday(obj: any) {
-  const { yesterdayConditions } = obj;
+  const { yesterdayConditions, units } = obj;
 
   if (!yesterdayConditions) {
     return null;
@@ -9,6 +9,7 @@ export default function yesterday(obj: any) {
 
   return {
     temperature,
-    precip: precip.value
+    precip: precip.value,
+    units
   };
 }

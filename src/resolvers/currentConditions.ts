@@ -1,3 +1,9 @@
+import {
+  convertTemperature,
+  convertPressure,
+  convertDistance
+} from '../helpers';
+
 export default function currentConditions(obj: any) {
   const { currentConditions } = obj;
 
@@ -20,17 +26,25 @@ export default function currentConditions(obj: any) {
     wind
   } = currentConditions;
 
+  const windChillConverted = windChill
+    ? convertTemperature(windChill.value, obj.units, true)
+    : null;
+
+  const humidexConverted = humidex
+    ? convertTemperature(humidex.value, obj.units, true)
+    : null;
+
   return {
     time: dateTime,
     station,
-    temperature: temperature.value,
+    temperature: convertTemperature(temperature.value, obj.units),
     humidity: relativeHumidity.value,
-    pressure: pressure.value,
-    windChill: windChill ? windChill.value : null,
-    humidex: humidex ? humidex.value : null,
+    pressure: convertPressure(pressure.value, obj.units),
+    windChill: windChillConverted,
+    humidex: humidexConverted,
     wind,
-    visibility: visibility.value,
-    dewPoint: dewpoint.value,
+    visibility: convertDistance(visibility.value, obj.units, true),
+    dewPoint: convertTemperature(dewpoint.value, obj.units),
     iconCode: iconCode.value,
     summary: condition
   };

@@ -1,3 +1,5 @@
+import { convertTemperature } from '../helpers';
+
 export default function normals(obj: any) {
   const { forecastGroup } = obj;
 
@@ -13,7 +15,7 @@ export default function normals(obj: any) {
   const lowTemp = temperature.find(item => item.class === 'low');
 
   return {
-    high: highTemp.value,
-    low: lowTemp.value
+    high: convertTemperature(highTemp.value, obj.units, true),
+    low: convertTemperature(lowTemp.value, obj.units, true)
   };
 }

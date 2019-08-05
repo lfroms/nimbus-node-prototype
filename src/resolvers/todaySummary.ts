@@ -1,8 +1,8 @@
-import { ensureArray } from '../helpers';
+import { ensureArray, convertTemperature } from '../helpers';
 
 interface TodaySummary {
-  high: number | null;
-  low: number | null;
+  high: string | null;
+  low: string | null;
 }
 
 const NULL_OBJECT: TodaySummary = {
@@ -32,12 +32,12 @@ export default function todaySummary(obj: any): TodaySummary {
   );
 
   return {
-    high: getOptionalTemperature(today),
-    low: getOptionalTemperature(tonight)
+    high: getOptionalTemperature(today, obj),
+    low: getOptionalTemperature(tonight, obj)
   };
 }
 
-function getOptionalTemperature(day: any) {
+function getOptionalTemperature(day: any, obj: any) {
   if (!day) {
     return null;
   }
@@ -52,5 +52,5 @@ function getOptionalTemperature(day: any) {
     return null;
   }
 
-  return asArray[0].value;
+  return convertTemperature(asArray[0].value, obj.units, true);
 }

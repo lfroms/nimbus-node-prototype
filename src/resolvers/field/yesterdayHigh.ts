@@ -1,3 +1,5 @@
+import { convertTemperature } from '../../helpers';
+
 export default function yesterdayHigh(obj: any) {
   const { temperature } = obj;
 
@@ -11,5 +13,5 @@ export default function yesterdayHigh(obj: any) {
     return null;
   }
 
-  return high.value;
+  return convertTemperature(high.value, obj.units);
 }

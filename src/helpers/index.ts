@@ -5,3 +5,7 @@ export {
 export { default as ensureArray } from './ensureArray';
 export { default as titleCase } from './titleCase';
 export { default as parseDateTimeAsUNIX } from './parseDateTimeAsUNIX';
+export * from './types';
+export { default as convertTemperature } from './convertTemperature';
+export { default as convertPressure } from './convertPressure';
+export { default as convertDistance } from './convertDistance';
