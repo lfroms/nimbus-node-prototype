@@ -13,3 +13,4 @@ export { default as warnings } from './warnings';
 export { default as wind } from './wind';
 export { default as winds } from './winds';
 export { default as yesterday } from './yesterday';
+export { default as todayRange } from './todayRange';

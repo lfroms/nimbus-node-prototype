@@ -13,6 +13,7 @@ export default gql`
     hourlyForecast: HourlyForecast
     sun: Sun
     yesterday: Yesterday
+    todayRange: TodayRange
   }
 
   """
@@ -79,5 +80,13 @@ export default gql`
     high: Float
     low: Float
     precip: String
+  }
+
+  """
+  Describes today's projected high and low temperature.
+  """
+  type TodayRange {
+    high: Float
+    low: Float
   }
 `;
