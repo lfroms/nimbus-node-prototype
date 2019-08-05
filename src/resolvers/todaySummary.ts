@@ -25,13 +25,14 @@ export default function todaySummary(obj: any): TodaySummary {
 
   const today = forecast.find(
     item =>
-      item.period.textForecastName.toLowerCase() === 'today' || "aujourd'hui"
+      item.period.textForecastName.toLowerCase() === 'today' ||
+      item.period.textForecastName.toLowerCase() === "aujourd'hui"
   );
 
   const tonight = forecast.find(
     item =>
       item.period.textForecastName.toLowerCase() === 'tonight' ||
-      'Ce soir et cette nuit'
+      item.period.textForecastName.toLowerCase() === 'ce soir et cette nuit'
   );
 
   return {
