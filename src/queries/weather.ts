@@ -6,6 +6,7 @@ interface WeatherArgs {
   siteCode: number;
   province: string;
   language?: Language;
+  units: 'imperial' | 'metric';
 }
 
 export default async function weather(
@@ -13,7 +14,7 @@ export default async function weather(
   args: WeatherArgs,
   context: Context<any>
 ) {
-  const { siteCode, province, language = 'e' } = args;
+  const { siteCode, province, units, language = 'e' } = args;
   const {
     dataSources: { environmentCanadaAPI: api }
   } = context;
@@ -26,7 +27,11 @@ export default async function weather(
     );
 
     const convertedText = convertCharacterEncoding(text);
-    return await parseSiteData(convertedText);
+
+    return {
+      ...(await parseSiteData(convertedText)),
+      units
+    };
   } catch (err) {
     // Return no data if an error has occurred.
     return null;

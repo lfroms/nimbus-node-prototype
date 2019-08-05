@@ -14,6 +14,7 @@ export default gql`
     sun: Sun
     yesterday: Yesterday
     todaySummary: TodaySummary
+    units: ResponseUnits!
   }
 
   """
@@ -88,5 +89,15 @@ export default gql`
   type TodaySummary {
     high: Float
     low: Float
+  }
+
+  """
+  Information about the data returned.
+  """
+  type ResponseUnits {
+    type: Units!
+    temperature: String!
+    speed: String!
+    pressure: String!
   }
 `;
