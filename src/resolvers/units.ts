@@ -3,6 +3,7 @@ interface ResponseUnits {
   temperature: string;
   speed: string;
   pressure: string;
+  distance: string;
 }
 
 export default function units(obj: any): ResponseUnits {
@@ -13,7 +14,8 @@ export default function units(obj: any): ResponseUnits {
       type,
       temperature: 'C',
       speed: 'km/h',
-      pressure: 'kPa'
+      pressure: 'kPa',
+      distance: 'km'
     };
   }
 
@@ -21,6 +23,7 @@ export default function units(obj: any): ResponseUnits {
     type,
     temperature: 'F',
     speed: 'mph',
-    pressure: 'in'
+    pressure: 'in',
+    distance: 'mi'
   };
 }

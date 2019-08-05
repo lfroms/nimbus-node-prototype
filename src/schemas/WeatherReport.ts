@@ -99,5 +99,6 @@ export default gql`
     temperature: String!
     speed: String!
     pressure: String!
+    distance: String!
   }
 `;
