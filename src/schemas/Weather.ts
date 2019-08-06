@@ -8,7 +8,7 @@ export default gql`
 
   type Wind {
     direction: String
-    speed: String!
+    speed: String
     gust: Int
     bearing: Float
   }
