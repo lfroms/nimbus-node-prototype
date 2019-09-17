@@ -1,4 +1,4 @@
-import { parseDateTimeAsUNIX } from '../helpers';
+import { parseDateTimeAsUNIX, lopAsCategory } from '../helpers';
 
 export default function hours(obj: any) {
   const { hours } = obj;
@@ -19,7 +19,7 @@ export default function hours(obj: any) {
       time: parseDateTimeAsUNIX(dateTimeUTC),
       summary: condition,
       iconCode: iconCode.value,
-      precipProbability: lop.value,
+      precipProbability: lopAsCategory(lop.value),
       temperature: temperature.value,
       humidex: humidex ? humidex.value : null,
       windChill: windChill ? windChill.value : null,
