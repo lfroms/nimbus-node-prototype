@@ -24,7 +24,7 @@ export default gql`
     time: Int!
     summary: String!
     iconCode: Int!
-    precipProbability: String
+    precipProbability: String!
     temperature: Float!
     humidex: Float
     windChill: Float
