@@ -5,17 +5,21 @@ enum LopCategory {
   high = 'High'
 }
 
-export default function lopAsCategory(lop?: number): LopCategory {
+export default function lopAsCategory(lop?: string): LopCategory {
   if (!lop) {
     return LopCategory.nil;
   }
 
-  if (lop <= 100) {
-    return LopCategory.high;
-  } else if (lop <= 70) {
-    return LopCategory.medium;
-  } else if (lop <= 40) {
+  let parsedLop = parseInt(lop);
+
+  if (parsedLop == 0) {
+    return LopCategory.nil;
+  } else if (parsedLop <= 40) {
     return LopCategory.low;
+  } else if (parsedLop <= 70) {
+    return LopCategory.medium;
+  } else if (parsedLop <= 100) {
+    return LopCategory.high;
   }
 
   return LopCategory.nil;
