@@ -35,7 +35,7 @@ export default async function sites(
     const longitude = site.longitude.trim();
 
     return {
-      code: site.code.trim(),
+      code: site.code.trim().substr(1),
       name: site.name.trim(),
       province: site.province.trim(),
       latitude: latitude !== '' ? latitude.slice(0, -1) : null,
