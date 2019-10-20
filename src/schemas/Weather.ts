@@ -3,7 +3,8 @@ import { gql } from 'apollo-server';
 export default gql`
   type UV {
     index: Int!
-    levelDescription: String!
+    category: String!
+    description: String!
   }
 
   type Wind {

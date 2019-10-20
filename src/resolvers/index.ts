@@ -15,3 +15,4 @@ export { default as winds } from './winds';
 export { default as yesterday } from './yesterday';
 export { default as todaySummary } from './todaySummary';
 export { default as units } from './units';
+export { default as uv } from './uv';
