@@ -1,4 +1,4 @@
-import { weather, sites } from './queries';
+import { weather, weatherByCoordinate, bulkWeatherByCoordinates, sites } from './queries';
 import { time, yesterdayHigh, yesterdayLow } from './resolvers/field';
 import {
   currentConditions,
@@ -24,6 +24,8 @@ import {
 export default {
   Query: {
     weather,
+    weatherByCoordinate,
+    bulkWeatherByCoordinates,
     sites
   },
   WeatherReport: {

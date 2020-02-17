@@ -13,6 +13,14 @@ export default gql`
   }
 
   """
+  Coordinates.
+  """
+  input Coordinate {
+    latitude: Float
+    longitude: Float
+  }
+
+  """
   A two or three character province code.
   """
   enum Province {

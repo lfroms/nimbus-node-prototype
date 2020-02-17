@@ -1,7 +1,7 @@
 import { parseString } from 'xml2js';
 
 export default function parseSiteData(string: string) {
-  return new Promise(function(resolve, reject) {
+  return new Promise<Object>(function(resolve, reject) {
     parseString(
       string,
       {

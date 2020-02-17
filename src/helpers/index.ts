@@ -10,3 +10,6 @@ export { default as convertTemperature } from './convertTemperature';
 export { default as convertPressure } from './convertPressure';
 export { default as convertDistance } from './convertDistance';
 export { default as lopAsCategory } from './lopAsCategory';
+export { default as normalizeSiteList, Site } from './normalizeSiteList';
+export { default as orderSitesByDistanceFromPoint } from './orderSitesByDistanceFromPoint'
+export { default as findNearestSiteByDistanceFromPoint } from './findNearestSiteByDistanceFromPoint';

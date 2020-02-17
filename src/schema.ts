@@ -19,6 +19,25 @@ export default gql`
     ): WeatherReport
 
     """
+    Get weather information for a station closest to given coordinates.
+    """
+    weatherByCoordinate(
+      latitude: Float
+      longitude: Float
+      units: Units!
+      language: Language = e
+    ): WeatherReport
+
+    """
+    Get weather information for multiple weather stations by list of coordinates.
+    """
+    bulkWeatherByCoordinates(
+      coordinates: [Coordinate!]!
+      units: Units!
+      language: Language = e
+    ): [WeatherReport]
+
+    """
     Retrieve the entire site list or search by coordinates.
     """
     sites(
