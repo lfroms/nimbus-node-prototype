@@ -1,4 +1,4 @@
-import { parseSiteData, convertCharacterEncoding, normalizeSiteList, findNearestSiteByDistanceFromPoint, Site } from '../helpers';
+import { parseSiteData, convertCharacterEncoding, normalizeEnvironmentCanadaSiteList, findNearestSiteByDistanceFromPoint, Site } from '../helpers';
 import { Context } from 'apollo-server-core';
 import { EnvironmentCanadaAPI, Language } from '../data_sources';
 
@@ -25,7 +25,7 @@ export default async function bulkWeatherByCoordinates(
 
   try {
     const data = await (api as EnvironmentCanadaAPI).getSites(language);
-    const normalized = normalizeSiteList(data);
+    const normalized = normalizeEnvironmentCanadaSiteList(data);
 
     let foundSites: Site[] = []
 

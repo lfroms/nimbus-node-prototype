@@ -1,4 +1,4 @@
-import { Site } from "./normalizeSiteList";
+import { Site } from "./normalizeEnvironmentCanadaSiteList";
 
 import geolib from 'geolib';
 

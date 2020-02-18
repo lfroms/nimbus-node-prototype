@@ -1,6 +1,6 @@
 import { Context } from 'apollo-server-core';
 import { EnvironmentCanadaAPI, Language } from '../data_sources';
-import { normalizeSiteList, orderSitesByDistanceFromPoint } from '../helpers';
+import { normalizeEnvironmentCanadaSiteList, orderSitesByDistanceFromPoint } from '../helpers';
 
 interface SiteListArgs {
   language: Language;
@@ -20,7 +20,7 @@ export default async function sites(
   const { language, limit, latitude, longitude } = args;
 
   const data = await (api as EnvironmentCanadaAPI).getSites(language);
-  const normalized = normalizeSiteList(data);
+  const normalized = normalizeEnvironmentCanadaSiteList(data);
 
   if (latitude && longitude) {
     const orderedByDistance = orderSitesByDistanceFromPoint(latitude, longitude, normalized);
