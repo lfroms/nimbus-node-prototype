@@ -22,8 +22,7 @@ export default gql`
     Get weather information for a station closest to given coordinates.
     """
     weatherByCoordinate(
-      latitude: Float!
-      longitude: Float!
+      coordinate: Coordinate!
       units: Units!
       language: Language = e
     ): WeatherReport

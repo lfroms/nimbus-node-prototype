@@ -1,4 +1,4 @@
-import { parseSiteData, convertCharacterEncoding } from '../helpers';
+import { parseSiteData, convertCharacterEncoding, ImperialMetric } from '../helpers';
 import { Context } from 'apollo-server-core';
 import { EnvironmentCanadaAPI, Language } from '../data_sources';
 
@@ -6,7 +6,7 @@ interface WeatherArgs {
   siteCode: number;
   province: string;
   language?: Language;
-  units: 'imperial' | 'metric';
+  units: ImperialMetric;
 }
 
 export default async function weather(
