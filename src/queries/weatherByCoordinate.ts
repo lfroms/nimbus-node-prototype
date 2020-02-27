@@ -3,7 +3,7 @@ import { Context } from 'apollo-server-core';
 import { EnvironmentCanadaAPI, Language } from '../data_sources';
 
 interface WeatherByCoordinateArgs {
-  coordinate: Coordinate;
+  coordinate?: Coordinate;
   language: Language;
   units: ImperialMetric;
 }
@@ -13,6 +13,10 @@ export default async function weatherByCoordinate(
   args: WeatherByCoordinateArgs,
   context: Context<any>
 ) {
+  if (args.coordinate == null) {
+    return null
+  }
+
   const { coordinate: { latitude, longitude }, language, units } = args;
   const {
     dataSources: { environmentCanadaAPI: api }
