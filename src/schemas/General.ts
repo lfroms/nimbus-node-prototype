@@ -16,8 +16,8 @@ export default gql`
   Coordinates.
   """
   input Coordinate {
-    latitude: Float
-    longitude: Float
+    latitude: Float!
+    longitude: Float!
   }
 
   """
