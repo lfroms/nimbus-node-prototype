@@ -12,6 +12,7 @@ export default function days(obj: any) {
       period,
       textSummary,
       abbreviatedForecast,
+      cloudPrecip,
       temperatures,
       humidex,
       windChill,
@@ -25,9 +26,12 @@ export default function days(obj: any) {
       pop
     } = abbreviatedForecast;
 
+    const { textSummary: cloudPrecipSummary } = cloudPrecip;
+
     return {
       when: period.textForecastName,
-      summary: textSummary,
+      longSummary: textSummary,
+      summary: cloudPrecipSummary,
       shortSummary: shortTextSummary,
       iconCode: iconCode.value,
       precipProbability: pop.value,

@@ -6,6 +6,7 @@ export default gql`
   """
   type Day {
     when: String!
+    longSummary: String!
     summary: String!
     shortSummary: String!
     iconCode: Int!
