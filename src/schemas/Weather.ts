@@ -47,5 +47,6 @@ export default gql`
     code: String!
     latitude: String!
     longitude: String!
+    distanceMetres: Int!
   }
 `;

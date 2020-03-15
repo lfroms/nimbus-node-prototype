@@ -20,7 +20,7 @@ export default function normalizeEnvironmentCanadaSiteList(data: any[]): Site[] 
       code: site.code.trim().substr(1),
       name: site.name.trim(),
       province: site.province.trim(),
-      latitude,
+      latitude: 1 * latitude,
       // All entries in EC CSV are positive, should be negative.
       longitude: -longitude
     } as Site;

@@ -5,7 +5,7 @@ import {
 } from '../helpers';
 
 export default function currentConditions(obj: any) {
-  const { currentConditions } = obj;
+  const { currentConditions, requestedCoordinate, nearestCoordinate } = obj;
 
   if (!currentConditions) {
     return null;
@@ -46,6 +46,8 @@ export default function currentConditions(obj: any) {
     visibility: convertDistance(visibility.value, obj.units, true),
     dewPoint: convertTemperature(dewpoint.value, obj.units),
     iconCode: iconCode.value,
-    summary: condition
+    summary: condition,
+    requestedCoordinate,
+    nearestCoordinate
   };
 }

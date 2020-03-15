@@ -38,7 +38,15 @@ export default async function weatherByCoordinate(
 
     return {
       ...(await parseSiteData(convertedText)),
-      units
+      units,
+      requestedCoordinate: {
+        latitude,
+        longitude
+      },
+      nearestCoordinate: {
+        latitude: nearestSite.latitude,
+        longitude: nearestSite.longitude
+      }
     };
   } catch (err) {
     // Return no data if an error has occurred.
