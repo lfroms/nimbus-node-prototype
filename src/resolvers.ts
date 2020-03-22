@@ -55,7 +55,7 @@ export default {
     time,
     days
   },
-  Day: {
+  ForecastCondition: {
     winds,
     uv
   },

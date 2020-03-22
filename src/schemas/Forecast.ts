@@ -2,10 +2,18 @@ import { gql } from 'apollo-server';
 
 export default gql`
   """
-  Forecasted conditions for a particular day in the future.
+  Forecast daytime and nighttime conditions for a particular day.
   """
   type Day {
-    when: String!
+    time: Int!
+    dayCondition: ForecastCondition
+    nightCondition: ForecastCondition
+  }
+
+  """
+  Forecasted conditions for a particular day.
+  """
+  type ForecastCondition {
     longSummary: String!
     summary: String!
     shortSummary: String!
