@@ -34,7 +34,7 @@ export default function days(obj: any) {
     if (firstItemIsNight) {
       nighttimeCondition = days[index];
     } else {
-      nighttimeCondition = index === 0 ? null : days[index - 1];
+      nighttimeCondition = index === days.length - 1 ? null : days[index + 1];
     }
 
     let condition = {
