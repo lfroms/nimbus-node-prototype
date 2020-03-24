@@ -2,8 +2,10 @@ import { ensureArray } from '../helpers';
 import moment from 'moment';
 
 function itemIsNight(item: any) {
-  return item.period.value.toLowerCase().includes('night')
-    || item.period.value.toLowerCase().includes('nuit')
+  return (
+    item.period.value.toLowerCase().includes('night') ||
+    item.period.value.toLowerCase().includes('nuit')
+  );
 }
 
 export default function days(obj: any) {
@@ -16,7 +18,7 @@ export default function days(obj: any) {
   const firstItemIsNight = days[0] && itemIsNight(days[0]);
   const output: any[] = [];
 
-  days.forEach((day, index) => {
+  days.forEach((_day, index) => {
     if (index % 2 !== 0) {
       return;
     }
@@ -38,7 +40,10 @@ export default function days(obj: any) {
     }
 
     let condition = {
-      time: moment().startOf('day').add(output.length, 'days').unix(),
+      time: moment()
+        .startOf('day')
+        .add(output.length, 'days')
+        .unix(),
       dayCondition: null,
       nightCondition: null
     } as {
@@ -59,7 +64,7 @@ export default function days(obj: any) {
         windChill: daytimeCondition.windChill ? daytimeCondition.windChill.calculated.value : null,
         winds: daytimeCondition.winds,
         uv: daytimeCondition.uv
-      }
+      };
     }
 
     if (nighttimeCondition !== null) {
@@ -71,10 +76,12 @@ export default function days(obj: any) {
         precipProbability: nighttimeCondition.abbreviatedForecast.pop.value,
         temperature: ensureArray(nighttimeCondition.temperatures.temperature)[0].value,
         humidex: nighttimeCondition.humidex ? nighttimeCondition.humidex.calculated.value : null,
-        windChill: nighttimeCondition.windChill ? nighttimeCondition.windChill.calculated.value : null,
+        windChill: nighttimeCondition.windChill
+          ? nighttimeCondition.windChill.calculated.value
+          : null,
         winds: nighttimeCondition.winds,
         uv: nighttimeCondition.uv
-      }
+      };
     }
 
     output.push(condition);

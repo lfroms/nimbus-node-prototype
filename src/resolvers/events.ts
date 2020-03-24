@@ -7,14 +7,12 @@ export default function events(obj: any) {
     return [];
   }
 
-  return ensureArray(events).map(
-    ({ type, priority, description, dateTime }) => {
-      return {
-        type,
-        priority,
-        summary: titleCase(description),
-        time: dateTime
-      };
-    }
-  );
+  return ensureArray(events).map(({ type, priority, description, dateTime }) => {
+    return {
+      type,
+      priority,
+      summary: titleCase(description),
+      time: dateTime
+    };
+  });
 }

@@ -1,4 +1,11 @@
-import { parseSiteData, convertCharacterEncoding, normalizeEnvironmentCanadaSiteList, findNearestSiteByDistanceFromPoint, ImperialMetric, Coordinate } from '../helpers';
+import {
+  parseSiteData,
+  convertCharacterEncoding,
+  normalizeEnvironmentCanadaSiteList,
+  findNearestSiteByDistanceFromPoint,
+  ImperialMetric,
+  Coordinate
+} from '../helpers';
 import { Context } from 'apollo-server-core';
 import { EnvironmentCanadaAPI, Language } from '../data_sources';
 
@@ -14,10 +21,14 @@ export default async function weatherByCoordinate(
   context: Context<any>
 ) {
   if (args.coordinate == null) {
-    return null
+    return null;
   }
 
-  const { coordinate: { latitude, longitude }, language, units } = args;
+  const {
+    coordinate: { latitude, longitude },
+    language,
+    units
+  } = args;
   const {
     dataSources: { environmentCanadaAPI: api }
   } = context;

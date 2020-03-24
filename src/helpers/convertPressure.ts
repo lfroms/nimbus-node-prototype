@@ -1,10 +1,7 @@
 import { unit, round } from 'mathjs';
 import { ImperialMetric } from './types';
 
-export default function convertPressure(
-  pressure: string,
-  units: ImperialMetric
-) {
+export default function convertPressure(pressure: string, units: ImperialMetric) {
   if (!pressure) {
     return pressure;
   }

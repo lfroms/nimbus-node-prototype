@@ -1,8 +1,4 @@
-import {
-  convertTemperature,
-  convertPressure,
-  convertDistance
-} from '../helpers';
+import { convertTemperature, convertPressure, convertDistance } from '../helpers';
 
 export default function currentConditions(obj: any) {
   const { currentConditions, requestedCoordinate, nearestCoordinate } = obj;
@@ -30,9 +26,7 @@ export default function currentConditions(obj: any) {
     ? convertTemperature(windChill.value, obj.units, true)
     : null;
 
-  const humidexConverted = humidex
-    ? convertTemperature(humidex.value, obj.units, true)
-    : null;
+  const humidexConverted = humidex ? convertTemperature(humidex.value, obj.units, true) : null;
 
   return {
     time: dateTime,

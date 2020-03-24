@@ -1,4 +1,12 @@
-import { parseSiteData, convertCharacterEncoding, normalizeEnvironmentCanadaSiteList, findNearestSiteByDistanceFromPoint, Site, Coordinate, ImperialMetric } from '../helpers';
+import {
+  parseSiteData,
+  convertCharacterEncoding,
+  normalizeEnvironmentCanadaSiteList,
+  findNearestSiteByDistanceFromPoint,
+  Site,
+  Coordinate,
+  ImperialMetric
+} from '../helpers';
 import { Context } from 'apollo-server-core';
 import { EnvironmentCanadaAPI, Language } from '../data_sources';
 
@@ -22,14 +30,18 @@ export default async function bulkWeatherByCoordinates(
     const data = await (api as EnvironmentCanadaAPI).getSites(language);
     const normalized = normalizeEnvironmentCanadaSiteList(data);
 
-    let foundSites: Site[] = []
+    let foundSites: Site[] = [];
 
     for (const coordinate of coordinates) {
-      const nearestSite = findNearestSiteByDistanceFromPoint(coordinate.latitude, coordinate.longitude, normalized);
-      foundSites.push(nearestSite)
+      const nearestSite = findNearestSiteByDistanceFromPoint(
+        coordinate.latitude,
+        coordinate.longitude,
+        normalized
+      );
+      foundSites.push(nearestSite);
     }
 
-    let outputWeatherReports: Array<any> = []
+    let outputWeatherReports: Array<any> = [];
 
     for (const foundSite of foundSites) {
       const text = await (api as EnvironmentCanadaAPI).getWeather(
@@ -47,7 +59,6 @@ export default async function bulkWeatherByCoordinates(
     }
 
     return outputWeatherReports;
-
   } catch (err) {
     // Return no data if an error has occurred.
     return null;

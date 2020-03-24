@@ -9,11 +9,7 @@ interface SiteListArgs {
   limit?: number;
 }
 
-export default async function sites(
-  _obj: any,
-  args: SiteListArgs,
-  context: Context<any>
-) {
+export default async function sites(_obj: any, args: SiteListArgs, context: Context<any>) {
   const {
     dataSources: { environmentCanadaAPI: api }
   } = context;

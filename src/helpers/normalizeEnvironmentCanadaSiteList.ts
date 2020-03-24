@@ -14,7 +14,7 @@ export default function normalizeEnvironmentCanadaSiteList(data: any[]): Site[] 
     const trimmedLongitude = site.longitude.trim();
 
     const latitude: number = trimmedLatitude !== '' ? trimmedLatitude.slice(0, -1) : null;
-    const longitude: number = trimmedLongitude !== '' ? trimmedLongitude.slice(0, -1) : null
+    const longitude: number = trimmedLongitude !== '' ? trimmedLongitude.slice(0, -1) : null;
 
     return {
       code: site.code.trim().substr(1),

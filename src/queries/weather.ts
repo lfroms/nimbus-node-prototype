@@ -9,22 +9,14 @@ interface WeatherArgs {
   units: ImperialMetric;
 }
 
-export default async function weather(
-  _obj: any,
-  args: WeatherArgs,
-  context: Context<any>
-) {
+export default async function weather(_obj: any, args: WeatherArgs, context: Context<any>) {
   const { siteCode, province, units, language = 'e' } = args;
   const {
     dataSources: { environmentCanadaAPI: api }
   } = context;
 
   try {
-    const text = await (api as EnvironmentCanadaAPI).getWeather(
-      province,
-      siteCode,
-      language
-    );
+    const text = await (api as EnvironmentCanadaAPI).getWeather(province, siteCode, language);
 
     const convertedText = convertCharacterEncoding(text);
 

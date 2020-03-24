@@ -39,11 +39,6 @@ export default gql`
     """
     Retrieve the entire site list or search by coordinates.
     """
-    sites(
-      language: Language = e
-      latitude: Float
-      longitude: Float
-      limit: Int
-    ): [Site!]
+    sites(language: Language = e, latitude: Float, longitude: Float, limit: Int): [Site!]
   }
 `;

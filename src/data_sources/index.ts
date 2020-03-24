@@ -1,4 +1,1 @@
-export {
-  default as EnvironmentCanadaAPI,
-  Language
-} from './EnvironmentCanadaAPI';
+export { default as EnvironmentCanadaAPI, Language } from './EnvironmentCanadaAPI';

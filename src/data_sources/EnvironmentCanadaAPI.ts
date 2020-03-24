@@ -10,11 +10,7 @@ export default class EnvironmentCanadaAPI extends RESTDataSource {
     this.baseURL = 'http://dd.weather.gc.ca/citypage_weather/';
   }
 
-  async getWeather(
-    region: string,
-    siteCode: number,
-    language: Language
-  ): Promise<Buffer> {
+  async getWeather(region: string, siteCode: number, language: Language): Promise<Buffer> {
     const paddedSiteCode: String = siteCode.toString().padStart(7, '0');
     const filename = `s${paddedSiteCode}_${language}`;
 
@@ -32,10 +28,7 @@ export default class EnvironmentCanadaAPI extends RESTDataSource {
     };
 
     const languageAbbr = language === 'f' ? 'fr' : 'en';
-    const csvData = await request(
-      `docs/site_list_${languageAbbr}.csv`,
-      options
-    );
+    const csvData = await request(`docs/site_list_${languageAbbr}.csv`, options);
 
     return csvtojson({
       noheader: false,

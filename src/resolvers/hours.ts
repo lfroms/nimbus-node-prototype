@@ -4,16 +4,7 @@ export default function hours(obj: any) {
   const { hours } = obj;
 
   return hours.map(hour => {
-    const {
-      dateTimeUTC,
-      condition,
-      iconCode,
-      lop,
-      temperature,
-      humidex,
-      windChill,
-      wind
-    } = hour;
+    const { dateTimeUTC, condition, iconCode, lop, temperature, humidex, windChill, wind } = hour;
 
     return {
       time: parseDateTimeAsUNIX(dateTimeUTC),

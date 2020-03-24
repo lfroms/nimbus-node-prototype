@@ -1,10 +1,12 @@
 import geolib from 'geolib';
 import { Site } from './normalizeEnvironmentCanadaSiteList';
 
-export default function findNearestSiteByDistanceFromPoint(latitude: number, longitude: number, sites: Site[]): Site {
-  const relevantData = sites.filter(
-    site => site.latitude && site.longitude
-  );
+export default function findNearestSiteByDistanceFromPoint(
+  latitude: number,
+  longitude: number,
+  sites: Site[]
+): Site {
+  const relevantData = sites.filter(site => site.latitude && site.longitude);
 
   const orderedByDistance = geolib.findNearest(
     {
@@ -15,5 +17,5 @@ export default function findNearestSiteByDistanceFromPoint(latitude: number, lon
     relevantData as any
   );
 
-  return orderedByDistance as unknown as Site;
+  return (orderedByDistance as unknown) as Site;
 }
