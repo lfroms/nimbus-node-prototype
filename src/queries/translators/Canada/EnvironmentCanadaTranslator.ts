@@ -38,7 +38,7 @@ export default class EnvironmentCanadaTranslator implements Translator<Weather> 
   }
 
   private createToday(): Today {
-    throw new Error('Method not implemented.');
+    return null!;
   }
 
   private createCurrently(): Currently {
@@ -48,12 +48,12 @@ export default class EnvironmentCanadaTranslator implements Translator<Weather> 
   }
 
   private createHourly(): Hourly[] {
-    throw new Error('Method not implemented.');
+    return null!;
   }
   private createDaily(): Daily[] {
-    throw new Error('Method not implemented.');
+    return null!;
   }
   private createAlerts(): Alert[] {
-    throw new Error('Method not implemented.');
+    return null!;
   }
 }

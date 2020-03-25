@@ -20,4 +20,5 @@ export default gql`
 
 export interface Hourly extends DataPoint {
   time: number;
+  precipProbability: number | null;
 }

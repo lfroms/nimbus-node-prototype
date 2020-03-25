@@ -27,7 +27,7 @@ export default class CanadianMeteorologicalServicesDocs extends RESTDataSource {
   }
 
   private mapGeoJSONDataToSite(geoJSONData: GeoJSONResponse): Site[] {
-    return geoJSONData.features.map(feature => ({
+    return geoJSONData.features.map<Site>(feature => ({
       code: feature.properties.Codes,
       name: feature.properties['English Names'],
       province: feature.properties['Province Codes'],

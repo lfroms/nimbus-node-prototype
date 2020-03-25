@@ -6,6 +6,7 @@ export default gql`
   """
   type Location {
     regionName: String
+    stationName: String
     country: String!
     coordinate: Coordinate!
     distance: Float!
@@ -24,6 +25,7 @@ export default gql`
 
 export interface Location {
   regionName: string | null;
+  stationName: string | null;
   country: string;
   coordinate: Coordinate;
   distance: number;

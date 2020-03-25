@@ -1,6 +1,4 @@
-const {
-  CleanWebpackPlugin
-} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const merge = require('webpack-merge');
 const nodeExternals = require('webpack-node-externals');
@@ -14,7 +12,7 @@ module.exports = merge(common, {
   externals: [nodeExternals({})],
   mode: 'production',
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['dist'] }),
     new webpack.IgnorePlugin(/jsdom$/)
   ]
 });

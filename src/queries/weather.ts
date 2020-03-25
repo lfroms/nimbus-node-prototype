@@ -1,6 +1,7 @@
 import { WeatherQueryArgs } from '../schema';
 import { AppContext } from '..';
 import { EnvironmentCanadaTranslator } from './translators';
+import { Weather } from 'schemas';
 
 // tslint:disable-next-line: typedef
 export default async function weather(_obj: any, args: WeatherQueryArgs, context: AppContext) {
@@ -10,22 +11,22 @@ export default async function weather(_obj: any, args: WeatherQueryArgs, context
   } = context;
 
   try {
-    const outputWeatherReports: Array<any> = [];
+    const outputWeatherReports: Array<Weather> = [];
 
     for (const coordinate of coordinates) {
-      const text = await environmentCanadaDatamart.getWeather(
+      const response = await environmentCanadaDatamart.getWeather(
         coordinate.latitude,
         coordinate.longitude,
         canadianMeteorologicalServicesDocs
       );
-      console.log(
-        new EnvironmentCanadaTranslator(
-          text,
-          { latitude: 0, longitude: 0 },
-          { latitude: 0, longitude: 0 }
-        ).translate()
-      );
-      outputWeatherReports.push(text);
+
+      const weather = new EnvironmentCanadaTranslator(
+        response.dataString,
+        coordinate,
+        response.actualCoordinate
+      ).translate();
+
+      outputWeatherReports.push(weather);
     }
 
     return outputWeatherReports;

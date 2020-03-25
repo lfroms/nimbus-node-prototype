@@ -9,7 +9,6 @@ export default gql`
     icon: Int
     temperature: Float
     feelsLike: FeelsLike!
-    precipProbability: Float
     wind: Wind!
   }
 
@@ -53,7 +52,6 @@ export interface DataPoint {
   icon: number | null;
   temperature: number | null;
   feelsLike: FeelsLike;
-  precipProbability: number | null;
   wind: Wind;
 }
 

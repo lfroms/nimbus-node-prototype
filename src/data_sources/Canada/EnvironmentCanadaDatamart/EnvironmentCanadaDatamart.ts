@@ -1,11 +1,17 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import Axios, { AxiosRequestConfig } from 'axios';
 import { throttleAdapterEnhancer } from 'axios-extensions';
+import { Coordinate } from 'schemas';
 import { Language } from '../../../schema';
 
 import { CanadianMeteorologicalServicesDocs } from '../CanadianMeterologicalServicesDocs';
 import { convertCharacterEncoding } from '../helpers';
 import { CitypageWeatherURL, CitypageWeatherFilename } from '.';
+
+interface EnvironmentCanadaDatamartResponse {
+  dataString: string;
+  actualCoordinate: Coordinate;
+}
 
 export default class EnvironmentCanadaDatamart extends RESTDataSource {
   constructor() {
@@ -23,7 +29,7 @@ export default class EnvironmentCanadaDatamart extends RESTDataSource {
     latitude: number,
     longitude: number,
     meteorologicalServicesDocs: CanadianMeteorologicalServicesDocs
-  ): Promise<string> {
+  ): Promise<EnvironmentCanadaDatamartResponse> {
     const nearestSite = await meteorologicalServicesDocs.getNearestSite(latitude, longitude, 1);
 
     const filename = new CitypageWeatherFilename(nearestSite.code, Language.english);
@@ -38,6 +44,12 @@ export default class EnvironmentCanadaDatamart extends RESTDataSource {
     const response = await this.axiosClient.request(options);
     const decoded = convertCharacterEncoding(response.data);
 
-    return decoded;
+    return {
+      dataString: decoded,
+      actualCoordinate: {
+        latitude: nearestSite.latitude,
+        longitude: nearestSite.longitude
+      }
+    };
   }
 }

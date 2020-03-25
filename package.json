@@ -10,7 +10,7 @@
     "build": "webpack --config webpack.$NODE_ENV.js",
     "postinstall": "if-env NODE_ENV=production && yarn run build || exit 0",
     "start": "node dist/index.js",
-    "start:dev": "NODE_ENV=development yarn build & NODE_ENV=development PORT=3000 yarn start"
+    "start:dev": "killall node && NODE_ENV=development yarn build & NODE_ENV=development PORT=3000 yarn start"
   },
   "devDependencies": {
     "@types/jsdom": "^16.1.1",

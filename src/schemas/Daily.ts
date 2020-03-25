@@ -37,4 +37,5 @@ export interface Daily {
 export interface HalfDayCondition extends DataPoint {
   summaryExtended: string | null;
   summaryClouds: string | null;
+  precipProbability: number | null;
 }

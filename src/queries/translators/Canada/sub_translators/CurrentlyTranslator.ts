@@ -18,7 +18,6 @@ export default class CurrentlyTranslator implements Translator<Currently> {
       icon: this.createIcon(),
       temperature: this.createTemperature(),
       feelsLike: this.createFeelsLike(),
-      precipProbability: this.createPrecipProbability(),
       wind: this.createWind(),
       dewPoint: this.createDewPoint(),
       humidity: this.createHumidity(),
@@ -88,31 +87,84 @@ export default class CurrentlyTranslator implements Translator<Currently> {
     };
   }
 
-  private createPrecipProbability(): number | null {
-    throw new Error('Method not implemented.');
-  }
-
   private createWind(): Wind {
-    throw new Error('Method not implemented.');
+    const wind: Wind = {
+      speed: null,
+      gust: null,
+      direction: null,
+      bearing: null
+    };
+
+    const windElement = this.subtree?.getElementsByTagName('wind').item(0);
+
+    if (!windElement) {
+      return wind;
+    }
+
+    const speed = windElement.getElementsByTagName('speed').item(0)?.textContent;
+    const gust = windElement.getElementsByTagName('gust').item(0)?.textContent;
+    const direction = windElement.getElementsByTagName('direction').item(0)?.textContent;
+    const bearing = windElement.getElementsByTagName('bearing').item(0)?.textContent;
+
+    wind.speed = speed ? parseFloat(speed) : null;
+    wind.gust = gust ? parseFloat(gust) : null;
+    wind.direction = direction || null;
+    wind.bearing = bearing ? parseFloat(bearing) : null;
+
+    return wind;
   }
 
   private createDewPoint(): number | null {
-    throw new Error('Method not implemented.');
+    const dewpoint = this.subtree?.getElementsByTagName('dewpoint').item(0)?.textContent;
+    return dewpoint ? parseFloat(dewpoint) : null;
   }
 
   private createHumidity(): number | null {
-    throw new Error('Method not implemented.');
+    const humidity = this.subtree?.getElementsByTagName('relativeHumidity').item(0)?.textContent;
+    return humidity ? parseFloat(humidity) / 100 : null;
   }
 
   private createPressure(): Pressure {
-    throw new Error('Method not implemented.');
+    const pressure: Pressure = {
+      value: null,
+      tendency: null,
+      change: null
+    };
+
+    const pressureElement = this.subtree?.getElementsByTagName('pressure').item(0);
+
+    if (!pressure) {
+      return pressure;
+    }
+
+    const value = pressureElement?.textContent;
+    const tendency = pressureElement?.getAttribute('tendency')?.toString();
+    const change = pressureElement?.getAttribute('change')?.toString();
+
+    pressure.value = value ? parseFloat(value) : null;
+    pressure.change = change ? parseFloat(change) : null;
+
+    switch (tendency) {
+      case 'rising':
+        pressure.tendency = 'rising';
+        break;
+      case 'falling':
+        pressure.tendency = 'falling';
+        break;
+      default:
+        pressure.tendency = 'stable';
+        break;
+    }
+
+    return pressure;
   }
 
   private createVisibility(): number | null {
-    throw new Error('Method not implemented.');
+    const visibility = this.subtree?.getElementsByTagName('visibility').item(0)?.textContent;
+    return visibility ? parseFloat(visibility) : null;
   }
 
   private createUVIndex(): number | null {
-    throw new Error('Method not implemented.');
+    return null;
   }
 }

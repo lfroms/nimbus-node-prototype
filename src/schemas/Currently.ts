@@ -11,7 +11,6 @@ export default gql`
     icon: Int
     temperature: Float
     feelsLike: FeelsLike!
-    precipProbability: Float
     wind: Wind!
     dewPoint: Float
     humidity: Float

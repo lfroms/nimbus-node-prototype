@@ -25,7 +25,7 @@ export default gql`
     """
     Get weather information given one or more coordinates.
     """
-    weather(coordinates: [CoordinateInput!]!, language: Language = english): Weather
+    weather(coordinates: [CoordinateInput!]!, language: Language = english): [Weather]
   }
 
   enum Language {

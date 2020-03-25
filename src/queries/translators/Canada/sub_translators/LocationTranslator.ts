@@ -18,10 +18,20 @@ export default class LocationTranslator implements Translator<Location> {
 
     return {
       regionName: subtree?.getElementsByTagName('name').item(0)?.textContent || null,
+      stationName: this.createStationName(),
       country: subtree?.getElementsByTagName('country').item(0)!.textContent!,
       coordinate: this.createCoordinate(),
       distance: getDistance(this.requestedCoordinate, this.actualCoordinate)
     };
+  }
+
+  private createStationName(): string | null {
+    const stationElement = this.xmlDOM
+      .getElementsByTagName('currentConditions')
+      .item(0)
+      ?.getElementsByTagName('station')
+      .item(0)?.textContent;
+    return stationElement || null;
   }
 
   private createCoordinate(): Coordinate {
