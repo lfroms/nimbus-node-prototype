@@ -1,12 +1,11 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import { GeoJSONResponse, Site } from './types';
 import { findClosestSite } from './helpers';
-import Axios, { AxiosRequestConfig } from 'axios';
 
 export default class CanadianMeteorologicalServicesDocs extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = 'https://collaboration.cmc.ec.gc.ca/cmc/cmos/public_doc';
+    this.baseURL = 'https://collaboration.cmc.ec.gc.ca/cmc/cmos/public_doc/';
   }
 
   public async getNearestSite(latitude: number, longitude: number, rank: number): Promise<Site> {
@@ -16,13 +15,11 @@ export default class CanadianMeteorologicalServicesDocs extends RESTDataSource {
   }
 
   private async getSites(): Promise<Site[]> {
-    const options: AxiosRequestConfig = {
-      baseURL: this.baseURL
-    };
-
     try {
-      const response = await Axios.get('/msc-data/citypage-weather/site_list_en.geojson', options);
-      return this.mapGeoJSONDataToSite(response.data);
+      const response = await this.get('msc-data/citypage-weather/site_list_en.geojson');
+      const jsonResponse = JSON.parse(response);
+
+      return this.mapGeoJSONDataToSite(jsonResponse);
     } catch (err) {
       console.error(err);
       return [];

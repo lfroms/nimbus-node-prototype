@@ -44,5 +44,9 @@ export default function findClosestSite(
     outputSites.push(site);
   });
 
-  return outputSites[rank];
+  if (outputSites[rank] != undefined) {
+    return outputSites[rank];
+  }
+
+  return outputSites[0];
 }
