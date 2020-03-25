@@ -1,5 +1,10 @@
 import { Weather, Coordinate, Currently, Location, Today, Hourly, Daily, Alert } from 'schemas';
-import { LocationTranslator, CurrentlyTranslator, TodayTranslator } from './sub_translators';
+import {
+  LocationTranslator,
+  CurrentlyTranslator,
+  TodayTranslator,
+  HourlyTranslator
+} from './sub_translators';
 import { Translator } from '..';
 import { JSDOM } from 'jsdom';
 
@@ -48,11 +53,14 @@ export default class EnvironmentCanadaTranslator implements Translator<Weather> 
   }
 
   private createHourly(): Hourly[] {
-    return null!;
+    const translator = new HourlyTranslator(this.xmlDOM);
+    return translator.translate();
   }
+
   private createDaily(): Daily[] {
     return null!;
   }
+
   private createAlerts(): Alert[] {
     return null!;
   }
