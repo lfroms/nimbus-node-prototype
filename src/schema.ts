@@ -21,14 +21,9 @@ export default gql`
 
   type Query {
     """
-    Get weather information for a given a coordinate.
+    Get weather information given one or more coordinates.
     """
-    weather(coordinate: CoordinateInput!, language: Language = english): Weather
-
-    """
-    Get multiple sets of weather information given a list of coordinates.
-    """
-    bulkWeather(coordinates: [CoordinateInput!]!, language: Language = english): [Weather]!
+    weather(coordinates: [CoordinateInput!]!, language: Language = english): Weather
   }
 
   enum Language {
@@ -45,11 +40,6 @@ export default gql`
 // Typescript Interfaces
 
 export interface WeatherQueryArgs {
-  coordinate: Coordinate;
-  language?: Language;
-}
-
-export interface BulkWeatherQueryArgs {
   coordinates: Coordinate[];
   language?: Language;
 }
