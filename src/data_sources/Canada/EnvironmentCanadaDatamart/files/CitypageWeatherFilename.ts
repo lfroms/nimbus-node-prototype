@@ -1,4 +1,4 @@
-import { Language } from '../../../../schema';
+import { Language } from 'schema';
 
 export default class CitypageWeatherFilename {
   private siteCode: number;

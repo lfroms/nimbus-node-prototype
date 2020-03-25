@@ -3,6 +3,8 @@ import { Currently } from './Currently';
 import { Hourly } from './Hourly';
 import { Daily } from './Daily';
 import { Alert } from './Alert';
+import { Location } from './Location';
+import { Today } from './Today';
 
 export default gql`
   """
@@ -10,6 +12,7 @@ export default gql`
   """
   type Weather {
     location: Location!
+    today: Today!
     currently: Currently!
     hourly: [Hourly!]!
     daily: [Daily!]!
@@ -21,6 +24,7 @@ export default gql`
 
 export interface Weather {
   location: Location;
+  today: Today;
   currently: Currently;
   hourly: Hourly[];
   daily: Daily[];

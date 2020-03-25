@@ -1,5 +1,6 @@
 import { WeatherQueryArgs } from '../schema';
 import { AppContext } from '..';
+import { EnvironmentCanadaTranslator } from './translators';
 
 // tslint:disable-next-line: typedef
 export default async function weather(_obj: any, args: WeatherQueryArgs, context: AppContext) {
@@ -17,7 +18,13 @@ export default async function weather(_obj: any, args: WeatherQueryArgs, context
         coordinate.longitude,
         canadianMeteorologicalServicesDocs
       );
-
+      console.log(
+        new EnvironmentCanadaTranslator(
+          text,
+          { latitude: 0, longitude: 0 },
+          { latitude: 0, longitude: 0 }
+        ).translate()
+      );
       outputWeatherReports.push(text);
     }
 

@@ -5,8 +5,7 @@ export default gql`
   Information about the location at which this weather data was recorded.
   """
   type Location {
-    siteName: String
-    city: String!
+    regionName: String
     country: String!
     coordinate: Coordinate!
     distance: Float!
@@ -24,8 +23,7 @@ export default gql`
 // Typescript Interfaces
 
 export interface Location {
-  siteName?: string;
-  city: string;
+  regionName: string | null;
   country: string;
   coordinate: Coordinate;
   distance: number;

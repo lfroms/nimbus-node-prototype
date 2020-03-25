@@ -30,11 +30,11 @@ export default gql`
 
 export interface Daily {
   time: number;
-  daytimeConditions?: HalfDayCondition;
-  nighttimeConditions?: HalfDayCondition;
+  daytimeConditions: HalfDayCondition | null;
+  nighttimeConditions: HalfDayCondition | null;
 }
 
 export interface HalfDayCondition extends DataPoint {
-  summaryExtended?: string;
-  summaryClouds?: string;
+  summaryExtended: string | null;
+  summaryClouds: string | null;
 }

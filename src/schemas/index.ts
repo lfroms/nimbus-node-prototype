@@ -12,4 +12,5 @@ export {
 } from './DataPoint';
 export { default as HourlySchema, Hourly } from './Hourly';
 export { default as LocationSchema, Coordinate, Location } from './Location';
+export { default as TodaySchema, Today } from './Today';
 export { default as WeatherSchema, Weather } from './Weather';

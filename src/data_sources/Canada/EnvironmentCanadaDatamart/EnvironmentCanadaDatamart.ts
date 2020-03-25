@@ -1,11 +1,11 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import Axios, { AxiosRequestConfig } from 'axios';
 import { throttleAdapterEnhancer } from 'axios-extensions';
+import { Language } from '../../../schema';
 
-import { CitypageWeatherURL, CitypageWeatherFilename } from '.';
 import { CanadianMeteorologicalServicesDocs } from '../CanadianMeterologicalServicesDocs';
 import { convertCharacterEncoding } from '../helpers';
-import { Language } from '../../../schema';
+import { CitypageWeatherURL, CitypageWeatherFilename } from '.';
 
 export default class EnvironmentCanadaDatamart extends RESTDataSource {
   constructor() {

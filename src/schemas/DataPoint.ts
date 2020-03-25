@@ -49,32 +49,32 @@ export default gql`
 // Typescript Interfaces
 
 export interface DataPoint {
-  summary?: string;
-  icon?: number;
-  temperature?: number;
+  summary: string | null;
+  icon: number | null;
+  temperature: number | null;
   feelsLike: FeelsLike;
-  precipProbability?: number;
+  precipProbability: number | null;
   wind: Wind;
 }
 
 export interface FeelsLike {
-  temperature?: number;
-  type: FeelsLikeType;
+  temperature: number | null;
+  type: FeelsLikeType | null;
 }
 
 export type FeelsLikeType = 'humidex' | 'windChill';
 
 export interface Wind {
-  speed?: number;
-  gust?: number;
-  direction?: string;
-  bearing?: number;
+  speed: number | null;
+  gust: number | null;
+  direction: string | null;
+  bearing: number | null;
 }
 
 export interface Pressure {
-  value?: number;
-  tendency?: Tendency;
-  change?: number;
+  value: number | null;
+  tendency: Tendency | null;
+  change: number | null;
 }
 
 export type Tendency = 'rising' | 'falling' | 'stable';

@@ -13,8 +13,6 @@ export default gql`
     feelsLike: FeelsLike!
     precipProbability: Float
     wind: Wind!
-    sunriseTime: Float
-    sunsetTime: Float
     dewPoint: Float
     humidity: Float
     pressure: Pressure!
@@ -27,11 +25,9 @@ export default gql`
 
 export interface Currently extends DataPoint {
   time: number;
-  sunriseTime?: number;
-  sunsetTime?: number;
-  dewPoint?: number;
-  humidity?: number;
+  dewPoint: number | null;
+  humidity: number | null;
   pressure: Pressure;
-  visibility?: number;
-  uvIndex?: number;
+  visibility: number | null;
+  uvIndex: number | null;
 }

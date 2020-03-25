@@ -13,5 +13,8 @@ module.exports = merge(common, {
   entry: [path.join(__dirname, 'src/index.ts')],
   externals: [nodeExternals({})],
   mode: 'production',
-  plugins: [new CleanWebpackPlugin()]
+  plugins: [
+    new CleanWebpackPlugin(),
+    new webpack.IgnorePlugin(/jsdom$/)
+  ]
 });

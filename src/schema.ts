@@ -7,7 +7,8 @@ import {
   HourlySchema,
   LocationSchema,
   WeatherSchema,
-  Coordinate
+  Coordinate,
+  TodaySchema
 } from './schemas';
 
 export default gql`
@@ -17,6 +18,7 @@ export default gql`
   ${DataPointSchema}
   ${HourlySchema}
   ${LocationSchema}
+  ${TodaySchema}
   ${WeatherSchema}
 
   type Query {
