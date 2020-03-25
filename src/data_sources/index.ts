@@ -1,1 +1,2 @@
-export { default as EnvironmentCanadaAPI, Language } from './EnvironmentCanadaAPI';
+export * from './Canada/EnvironmentCanadaDatamart';
+export * from './Canada/CanadianMeterologicalServicesDocs';

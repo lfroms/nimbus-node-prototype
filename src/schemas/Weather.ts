@@ -1,52 +1,28 @@
 import { gql } from 'apollo-server';
+import { Currently } from './Currently';
+import { Hourly } from './Hourly';
+import { Daily } from './Daily';
+import { Alert } from './Alert';
 
 export default gql`
-  type UV {
-    index: Int!
-    category: String!
-    description: String!
-  }
-
-  type Wind {
-    direction: String
-    speed: String
-    gust: Int
-    bearing: Float
-  }
-
   """
-  A particular warning.
+  Weather for a given location.
   """
-  type Event {
-    time: Int!
-    summary: String!
-    type: WarningType!
-    priority: WarningPriority!
-  }
-
-  enum WarningType {
-    advisory
-    warning
-    watch
-    ended
-    statement
-  }
-
-  enum WarningPriority {
-    urgent
-    high
-    medium
-    low
-  }
-
-  """
-  Exact location of a specific weather station.
-  """
-  type Station {
-    name: String!
-    code: String!
-    latitude: String!
-    longitude: String!
-    distanceMetres: Int!
+  type Weather {
+    location: Location!
+    currently: Currently!
+    hourly: [Hourly!]!
+    daily: [Daily!]!
+    alerts: [Alert!]!
   }
 `;
+
+// Typescript Interfaces
+
+export interface Weather {
+  location: Location;
+  currently: Currently;
+  hourly: Hourly[];
+  daily: Daily[];
+  alerts: Alert[];
+}
