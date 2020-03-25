@@ -1,3 +1,4 @@
+export { default as AlertsTranslator } from './AlertsTranslator';
 export { default as CurrentlyTranslator } from './CurrentlyTranslator';
 export { default as HourlyTranslator } from './HourlyTranslator';
 export { default as LocationTranslator } from './LocationTranslator';
