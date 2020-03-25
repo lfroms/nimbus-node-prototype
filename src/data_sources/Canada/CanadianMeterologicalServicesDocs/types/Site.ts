@@ -1,5 +1,5 @@
 export default interface Site {
-  code: number;
+  code: string;
   name: string;
   province: string;
   latitude: number;

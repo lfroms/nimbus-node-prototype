@@ -28,15 +28,11 @@ export default class CanadianMeteorologicalServicesDocs extends RESTDataSource {
 
   private mapGeoJSONDataToSite(geoJSONData: GeoJSONResponse): Site[] {
     return geoJSONData.features.map(feature => ({
-      code: this.convertCodeStringToInt(feature.properties.Codes),
+      code: feature.properties.Codes,
       name: feature.properties['English Names'],
       province: feature.properties['Province Codes'],
       latitude: feature.properties.Latitude,
       longitude: feature.properties.Longitude
     }));
-  }
-
-  private convertCodeStringToInt(code: string): number {
-    return parseInt(code.trim().substr(1));
   }
 }

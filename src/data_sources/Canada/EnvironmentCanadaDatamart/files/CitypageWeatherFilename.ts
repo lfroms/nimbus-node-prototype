@@ -1,10 +1,10 @@
 import { Language } from 'schema';
 
 export default class CitypageWeatherFilename {
-  private siteCode: number;
+  private siteCode: string;
   private language: Language;
 
-  constructor(siteCode: number, language: Language) {
+  constructor(siteCode: string, language: Language) {
     this.siteCode = siteCode;
     this.language = language;
   }
@@ -13,12 +13,7 @@ export default class CitypageWeatherFilename {
     return this.createFilename(this.siteCode, this.language);
   }
 
-  private createStringForSiteCode(siteCode: number): string {
-    return siteCode.toString().padStart(7, '0');
-  }
-
-  private createFilename(siteCode: number, language: string): string {
-    const siteCodeString = this.createStringForSiteCode(siteCode);
-    return `s${siteCodeString}_${language}.xml`;
+  private createFilename(siteCode: string, language: string): string {
+    return `${siteCode}_${language}.xml`;
   }
 }
