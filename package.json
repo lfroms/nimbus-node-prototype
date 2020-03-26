@@ -6,6 +6,9 @@
   "author": "Lukas Romsicki",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "yarn": "1.22.0"
+  },
   "scripts": {
     "build": "webpack --config webpack.$NODE_ENV.js",
     "postinstall": "if-env NODE_ENV=production && yarn run build || exit 0",
