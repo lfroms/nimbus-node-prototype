@@ -10,10 +10,10 @@
     "yarn": "1.22.0"
   },
   "scripts": {
-    "build": "webpack --config webpack.$NODE_ENV.js",
-    "postinstall": "if-env NODE_ENV=production && yarn run build || exit 0",
+    "build": "webpack --config webpack.production.js",
+    "build:dev": "webpack --config webpack.development.js",
     "start": "node dist/index.js",
-    "start:dev": "killall node && NODE_ENV=development yarn build & NODE_ENV=development PORT=3000 yarn start"
+    "start:dev": "killall node && yarn build:dev & NODE_ENV=development PORT=3000 yarn start"
   },
   "devDependencies": {
     "@types/jsdom": "^16.1.1",
