@@ -38,7 +38,7 @@ export default gql`
   }
 
   type Wind {
-    speed: Float
+    speed: String
     gust: Float
     direction: String
     bearing: Float
@@ -63,7 +63,7 @@ export interface FeelsLike {
 export type FeelsLikeType = 'humidex' | 'windChill';
 
 export interface Wind {
-  speed: number | null;
+  speed: string | null;
   gust: number | null;
   direction: string | null;
   bearing: number | null;

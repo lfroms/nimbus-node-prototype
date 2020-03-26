@@ -197,7 +197,12 @@ export default class DailyTranslator implements Translator<Daily[]> {
     const direction = windElement.getElementsByTagName('direction').item(0)?.textContent;
     const bearing = windElement.getElementsByTagName('bearing').item(0)?.textContent;
 
-    wind.speed = speed ? parseFloat(speed) : null;
+    if (speed) {
+      const parsedSpeed = parseFloat(speed);
+
+      wind.speed = !isNaN(parsedSpeed) ? parsedSpeed.toString() : speed;
+    }
+
     wind.gust = gust ? parseFloat(gust) : null;
     wind.direction = direction || null;
     wind.bearing = bearing ? parseFloat(bearing) : null;
