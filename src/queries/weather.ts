@@ -1,30 +1,24 @@
-import { parseSiteData, convertCharacterEncoding, ImperialMetric } from '../helpers';
-import { Context } from 'apollo-server-core';
-import { EnvironmentCanadaAPI, Language } from '../data_sources';
+import { WeatherQueryArgs } from '../schema';
+import { AppContext } from '..';
+import { Weather } from 'schemas';
+import { LocationToDataSourceRouter } from './routers';
 
-interface WeatherArgs {
-  siteCode: number;
-  province: string;
-  language?: Language;
-  units: ImperialMetric;
-}
-
-export default async function weather(_obj: any, args: WeatherArgs, context: Context<any>) {
-  const { siteCode, province, units, language = 'e' } = args;
-  const {
-    dataSources: { environmentCanadaAPI: api }
-  } = context;
+// tslint:disable-next-line: typedef
+export default async function weather(_obj: any, args: WeatherQueryArgs, context: AppContext) {
+  const { coordinates } = args;
+  const { dataSources } = context;
 
   try {
-    const text = await (api as EnvironmentCanadaAPI).getWeather(province, siteCode, language);
+    const outputWeatherReports: Array<Weather> = [];
 
-    const convertedText = convertCharacterEncoding(text);
+    for (const coordinate of coordinates) {
+      const router = new LocationToDataSourceRouter(coordinate, dataSources);
+      outputWeatherReports.push(await router.getWeather());
+    }
 
-    return {
-      ...(await parseSiteData(convertedText)),
-      units
-    };
+    return outputWeatherReports;
   } catch (err) {
+    console.error(err);
     // Return no data if an error has occurred.
     return null;
   }

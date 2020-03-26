@@ -1,44 +1,52 @@
 import { gql } from 'apollo-server';
-import { WeatherReport, General, Weather, Forecast } from './schemas';
+import {
+  AlertSchema,
+  CurrentlySchema,
+  DailySchema,
+  DataPointSchema,
+  HourlySchema,
+  LocationSchema,
+  WeatherSchema,
+  Coordinate,
+  TodaySchema
+} from './schemas';
 
 export default gql`
-  ${General}
-  ${WeatherReport}
-  ${Weather}
-  ${Forecast}
+  ${AlertSchema}
+  ${CurrentlySchema}
+  ${DailySchema}
+  ${DataPointSchema}
+  ${HourlySchema}
+  ${LocationSchema}
+  ${TodaySchema}
+  ${WeatherSchema}
 
   type Query {
     """
-    Get weather information for a given station.
+    Get weather information given one or more coordinates.
     """
-    weather(
-      province: Province!
-      siteCode: Int!
-      units: Units!
-      language: Language = e
-    ): WeatherReport
+    weather(coordinates: [CoordinateInput!]!, language: Language = english): [Weather]
+  }
 
-    """
-    Get weather information for a station closest to given coordinates.
-    """
-    weatherByCoordinate(
-      coordinate: Coordinate
-      units: Units!
-      language: Language = e
-    ): WeatherReport
+  enum Language {
+    english
+    french
+  }
 
-    """
-    Get weather information for multiple weather stations by list of coordinates.
-    """
-    bulkWeatherByCoordinates(
-      coordinates: [Coordinate!]!
-      units: Units!
-      language: Language = e
-    ): [WeatherReport]!
-
-    """
-    Retrieve the entire site list or search by coordinates.
-    """
-    sites(language: Language = e, latitude: Float, longitude: Float, limit: Int): [Site!]
+  input CoordinateInput {
+    latitude: Float!
+    longitude: Float!
   }
 `;
+
+// Typescript Interfaces
+
+export interface WeatherQueryArgs {
+  coordinates: Coordinate[];
+  language?: Language;
+}
+
+export enum Language {
+  english = 'e',
+  french = 'f'
+}

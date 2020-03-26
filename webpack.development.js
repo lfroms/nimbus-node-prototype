@@ -1,4 +1,5 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const merge = require('webpack-merge');
 const nodeExternals = require('webpack-node-externals');
 const path = require('path');
@@ -16,7 +17,7 @@ module.exports = merge.smart(common, {
   ],
   mode: 'development',
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['dist'] }),
     new webpack.HotModuleReplacementPlugin()
   ],
   watch: true

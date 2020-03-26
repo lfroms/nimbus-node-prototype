@@ -1,0 +1,7 @@
+{
+  "rules": {
+    "typedef": [true, "call-signature"],
+    "prefer-const": true,
+    "member-access": true
+  }
+}

@@ -1,17 +1,27 @@
 import { ApolloServer } from 'apollo-server';
-
+import { DataSources } from 'apollo-server-core/dist/graphqlOptions';
 import resolvers from './resolvers';
 import typeDefs from './schema';
-import { EnvironmentCanadaAPI } from './data_sources';
+import { EnvironmentCanadaDatamart, CanadianMeteorologicalServicesDocs } from './data_sources';
+
+export interface AppDataSources {
+  environmentCanadaDatamart: EnvironmentCanadaDatamart;
+  canadianMeteorologicalServicesDocs: CanadianMeteorologicalServicesDocs;
+}
+
+const dataSources: DataSources<AppDataSources> = {
+  environmentCanadaDatamart: new EnvironmentCanadaDatamart(),
+  canadianMeteorologicalServicesDocs: new CanadianMeteorologicalServicesDocs()
+};
+
+export interface AppContext {
+  dataSources: AppDataSources;
+}
 
 const server = new ApolloServer({
   resolvers,
   typeDefs,
-  dataSources: () => {
-    return {
-      environmentCanadaAPI: new EnvironmentCanadaAPI()
-    };
-  }
+  dataSources: () => dataSources
 });
 
 server
