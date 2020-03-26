@@ -29,7 +29,7 @@ export default class LocationToDataSourceRouter {
 
   public async getWeather(): Promise<Weather> {
     const response = await this.fetchWeatherWithSiteIndex(0);
-    const canUseNextWeatherStation = response.nextNearestSiteDistance <= 20_000; // 20km
+    const canUseNextWeatherStation = response.nextNearestSiteDistance <= 30_000; // 30km
 
     if (!this.hasSufficientWeatherData(response.weather) && canUseNextWeatherStation) {
       const nextResponse = await this.fetchWeatherWithSiteIndex(1);
