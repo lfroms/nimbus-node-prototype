@@ -5,7 +5,7 @@ export default interface WeatherDataSource {
   getWeather(
     latitude: number,
     longitude: number,
-    nearestSiteIndex: number,
+    nearestSiteIndex?: number,
     documentationSource?: RESTDataSource
   ): Promise<WeatherDataSourceResponse>;
 }
