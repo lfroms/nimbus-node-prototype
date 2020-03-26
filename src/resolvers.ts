@@ -1,8 +1,9 @@
-import { weather } from './queries';
+import { weather, bulkWeather } from './queries';
 
 export default {
   Query: {
-    weather
+    weather,
+    bulkWeather
   },
   DataPoint: {
     __resolveType(): null {

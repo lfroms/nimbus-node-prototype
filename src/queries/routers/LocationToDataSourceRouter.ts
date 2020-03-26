@@ -45,7 +45,7 @@ export default class LocationToDataSourceRouter {
   }
 
   private hasSufficientWeatherData(weather: Weather): boolean {
-    return !!weather.currently.icon || false;
+    return weather.currently.icon != null || false;
   }
 
   private async fetchWeatherWithSiteIndex(index: number): Promise<FetchedWeatherResponse> {
