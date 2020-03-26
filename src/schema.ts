@@ -25,7 +25,7 @@ export default gql`
     """
     Get weather information given a coordinate.
     """
-    weather(coordinate: CoordinateInput!, language: Language = english): Weather
+    weather(coordinate: CoordinateInput, language: Language = english): Weather
 
     """
     Get weather information given one or more coordinates.
@@ -47,7 +47,7 @@ export default gql`
 // Typescript Interfaces
 
 export interface WeatherQueryArgs {
-  coordinate: Coordinate;
+  coordinate?: Coordinate;
   language?: Language;
 }
 

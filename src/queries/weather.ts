@@ -7,6 +7,10 @@ export default async function weather(_obj: any, args: WeatherQueryArgs, context
   const { coordinate } = args;
   const { dataSources } = context;
 
+  if (!coordinate) {
+    return null;
+  }
+
   try {
     const router = new LocationToDataSourceRouter(coordinate, dataSources);
     return await router.getWeather();
