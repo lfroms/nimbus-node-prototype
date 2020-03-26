@@ -1,5 +1,5 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
-import { GeoJSONResponse, Site } from './types';
+import { GeoJSONResponse, Site, SiteWithDistance } from './types';
 import { findClosestSite } from './helpers';
 
 export default class CanadianMeteorologicalServicesDocs extends RESTDataSource {
@@ -8,10 +8,16 @@ export default class CanadianMeteorologicalServicesDocs extends RESTDataSource {
     this.baseURL = 'https://collaboration.cmc.ec.gc.ca/cmc/cmos/public_doc/';
   }
 
-  public async getNearestSite(latitude: number, longitude: number, rank: number): Promise<Site> {
+  public async getTopTwoNearestSites(
+    startingAtIndex: number,
+    latitude: number,
+    longitude: number
+  ): Promise<SiteWithDistance[]> {
     const sites = await this.getSites();
 
-    return findClosestSite(latitude, longitude, sites, rank);
+    return [startingAtIndex + 1, startingAtIndex + 2].map(rank =>
+      findClosestSite(latitude, longitude, sites, rank)
+    );
   }
 
   private async getSites(): Promise<Site[]> {

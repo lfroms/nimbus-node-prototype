@@ -1,5 +1,5 @@
 import { orderByDistance, getDistance } from 'geolib';
-import { Site } from '../types';
+import { Site, SiteWithDistance } from '../types';
 
 // Workaround for Geolib typin bug
 interface GeolibCoordinate {
@@ -12,7 +12,7 @@ export default function findClosestSite(
   longitude: number,
   sites: Site[],
   rank: number
-): Site {
+): SiteWithDistance {
   const sitesWithCoordinates = sites.filter(site => site.latitude && site.longitude);
 
   const coordinateSet: GeolibCoordinate[] = sitesWithCoordinates.map(site => ({
@@ -25,7 +25,7 @@ export default function findClosestSite(
     coordinateSet
   ) as GeolibCoordinate[];
 
-  const outputSites: Site[] = [];
+  const outputSites: SiteWithDistance[] = [];
 
   orderedByDistance.forEach(item => {
     const site = sitesWithCoordinates.find(
@@ -36,12 +36,15 @@ export default function findClosestSite(
       return;
     }
 
-    site.distanceFromRequestedCoordinate = getDistance(item, {
-      latitude: site.latitude,
-      longitude: site.longitude
-    });
+    const transformedSite: SiteWithDistance = {
+      ...site,
+      distanceFromRequestedCoordinate: getDistance(item, {
+        latitude: site.latitude,
+        longitude: site.longitude
+      })
+    };
 
-    outputSites.push(site);
+    outputSites.push(transformedSite);
   });
 
   if (outputSites[rank] != undefined) {

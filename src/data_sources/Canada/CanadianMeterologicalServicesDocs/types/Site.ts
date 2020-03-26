@@ -4,5 +4,8 @@ export default interface Site {
   province: string;
   latitude: number;
   longitude: number;
-  distanceFromRequestedCoordinate?: number;
+}
+
+export interface SiteWithDistance extends Site {
+  distanceFromRequestedCoordinate: number;
 }

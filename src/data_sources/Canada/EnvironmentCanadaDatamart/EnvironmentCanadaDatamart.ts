@@ -1,18 +1,12 @@
 import { RESTDataSource } from 'apollo-datasource-rest';
 import Axios, { AxiosRequestConfig } from 'axios';
 import { throttleAdapterEnhancer } from 'axios-extensions';
-import { Coordinate } from 'schemas';
 import { Language } from '../../../schema';
 
 import { CanadianMeteorologicalServicesDocs } from '../CanadianMeterologicalServicesDocs';
 import { convertCharacterEncoding } from '../helpers';
 import { CitypageWeatherURL, CitypageWeatherFilename } from '.';
-import { WeatherDataSource } from 'data_sources/types';
-
-interface EnvironmentCanadaDatamartResponse {
-  dataString: string;
-  actualCoordinate: Coordinate;
-}
+import { WeatherDataSource, WeatherDataSourceResponse } from 'data_sources/types';
 
 export default class EnvironmentCanadaDatamart extends RESTDataSource implements WeatherDataSource {
   constructor() {
@@ -29,12 +23,17 @@ export default class EnvironmentCanadaDatamart extends RESTDataSource implements
   public async getWeather(
     latitude: number,
     longitude: number,
+    nearestSiteRank: number,
     meteorologicalServicesDocs: CanadianMeteorologicalServicesDocs
-  ): Promise<EnvironmentCanadaDatamartResponse> {
-    const nearestSite = await meteorologicalServicesDocs.getNearestSite(latitude, longitude, 1);
+  ): Promise<WeatherDataSourceResponse> {
+    const nearestSites = await meteorologicalServicesDocs.getTopTwoNearestSites(
+      nearestSiteRank,
+      latitude,
+      longitude
+    );
 
-    const filename = new CitypageWeatherFilename(nearestSite.code, Language.english);
-    const url = new CitypageWeatherURL(nearestSite.province, filename);
+    const filename = new CitypageWeatherFilename(nearestSites[0].code, Language.english);
+    const url = new CitypageWeatherURL(nearestSites[0].province, filename);
 
     const options: AxiosRequestConfig = {
       url: '/xml/' + url.toString(),
@@ -48,9 +47,10 @@ export default class EnvironmentCanadaDatamart extends RESTDataSource implements
     return {
       dataString: decoded,
       actualCoordinate: {
-        latitude: nearestSite.latitude,
-        longitude: nearestSite.longitude
-      }
+        latitude: nearestSites[0].latitude,
+        longitude: nearestSites[0].longitude
+      },
+      nextNearestSiteDistance: nearestSites[1].distanceFromRequestedCoordinate
     };
   }
 }
