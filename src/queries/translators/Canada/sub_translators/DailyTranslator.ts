@@ -75,7 +75,7 @@ export default class DailyTranslator implements Translator<Daily[]> {
   private createTimeForItem(index: number): number {
     const forecastIssue = moment(this.forecastIssueUNIXTime);
     const now = moment();
-    const yesterday = now.subtract(1, 'day');
+    const yesterday = now.clone().subtract(1, 'day');
 
     const startsYesterday = forecastIssue.date() === yesterday.date();
 
