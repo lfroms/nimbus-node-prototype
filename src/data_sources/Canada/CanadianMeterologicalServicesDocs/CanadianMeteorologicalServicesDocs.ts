@@ -15,7 +15,7 @@ export default class CanadianMeteorologicalServicesDocs extends RESTDataSource {
   ): Promise<SiteWithDistance[]> {
     const sites = await this.getSites();
 
-    return [startingAtIndex + 1, startingAtIndex + 2].map(rank =>
+    return [startingAtIndex, startingAtIndex + 1].map(rank =>
       findClosestSite(latitude, longitude, sites, rank)
     );
   }
