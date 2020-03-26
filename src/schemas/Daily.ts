@@ -20,6 +20,7 @@ export default gql`
     summary: String
     icon: Int
     temperature: Float
+    humidity: Float
     feelsLike: FeelsLike!
     precipProbability: Float
     wind: Wind!
@@ -37,5 +38,6 @@ export interface Daily {
 export interface HalfDayCondition extends DataPoint {
   summaryExtended: string | null;
   summaryClouds: string | null;
+  humidity: number | null;
   precipProbability: number | null;
 }

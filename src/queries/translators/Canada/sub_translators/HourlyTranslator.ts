@@ -63,7 +63,7 @@ export default class HourlyTranslator implements Translator<Hourly[]> {
     if (humidex && humidex.textContent?.length) {
       temperature = humidex.textContent;
       type = 'humidex';
-    } else if (windChill && humidex?.textContent?.length) {
+    } else if (windChill && windChill?.textContent?.length) {
       temperature = windChill.textContent;
       type = 'windChill';
     }

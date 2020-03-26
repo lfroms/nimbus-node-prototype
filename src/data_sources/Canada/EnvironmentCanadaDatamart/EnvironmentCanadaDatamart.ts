@@ -7,13 +7,14 @@ import { Language } from '../../../schema';
 import { CanadianMeteorologicalServicesDocs } from '../CanadianMeterologicalServicesDocs';
 import { convertCharacterEncoding } from '../helpers';
 import { CitypageWeatherURL, CitypageWeatherFilename } from '.';
+import { WeatherDataSource } from 'data_sources/types';
 
 interface EnvironmentCanadaDatamartResponse {
   dataString: string;
   actualCoordinate: Coordinate;
 }
 
-export default class EnvironmentCanadaDatamart extends RESTDataSource {
+export default class EnvironmentCanadaDatamart extends RESTDataSource implements WeatherDataSource {
   constructor() {
     super();
     this.baseURL = 'https://dd.weather.gc.ca/citypage_weather';

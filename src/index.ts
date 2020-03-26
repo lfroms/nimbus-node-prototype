@@ -4,7 +4,7 @@ import resolvers from './resolvers';
 import typeDefs from './schema';
 import { EnvironmentCanadaDatamart, CanadianMeteorologicalServicesDocs } from './data_sources';
 
-interface AppDataSources {
+export interface AppDataSources {
   environmentCanadaDatamart: EnvironmentCanadaDatamart;
   canadianMeteorologicalServicesDocs: CanadianMeteorologicalServicesDocs;
 }

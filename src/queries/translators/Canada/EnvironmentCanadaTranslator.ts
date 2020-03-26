@@ -4,7 +4,8 @@ import {
   CurrentlyTranslator,
   TodayTranslator,
   HourlyTranslator,
-  AlertsTranslator
+  AlertsTranslator,
+  DailyTranslator
 } from './sub_translators';
 import { Translator } from '..';
 import { JSDOM } from 'jsdom';
@@ -59,7 +60,8 @@ export default class EnvironmentCanadaTranslator implements Translator<Weather> 
   }
 
   private createDaily(): Daily[] {
-    return null!;
+    const translator = new DailyTranslator(this.xmlDOM);
+    return translator.translate();
   }
 
   private createAlerts(): Alert[] {
