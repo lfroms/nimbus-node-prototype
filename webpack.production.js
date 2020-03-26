@@ -13,7 +13,6 @@ module.exports = merge(common, {
   externals: [nodeExternals({})],
   mode: 'production',
   plugins: [
-    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['dist'] }),
-    new webpack.IgnorePlugin(/jsdom$/)
-  ]
+    new CleanWebpackPlugin({ cleanOnceBeforeBuildPatterns: ['dist'] })
+    ]
 });
