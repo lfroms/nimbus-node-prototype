@@ -25,6 +25,6 @@ export default async function bulkWeather(
     console.error(err);
 
     // Return no data if an error has occurred.
-    return null;
+    return [];
   }
 }

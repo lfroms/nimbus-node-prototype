@@ -30,7 +30,7 @@ export default gql`
     """
     Get weather information given one or more coordinates.
     """
-    bulkWeather(coordinates: [CoordinateInput!]!, language: Language = english): [Weather]
+    bulkWeather(coordinates: [CoordinateInput!]!, language: Language = english): [Weather]!
   }
 
   enum Language {
