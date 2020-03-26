@@ -22,7 +22,15 @@ export default class CanadianMeteorologicalServicesDocs extends RESTDataSource {
 
   private async getSites(): Promise<Site[]> {
     try {
-      const response = await this.get('msc-data/citypage-weather/site_list_en.geojson');
+      const response = await this.get(
+        'msc-data/citypage-weather/site_list_en.geojson',
+        {},
+        {
+          cacheOptions: { ttl: 86400 },
+          cache: 'default'
+        }
+      );
+
       const jsonResponse = JSON.parse(response);
 
       return this.mapGeoJSONDataToSite(jsonResponse);

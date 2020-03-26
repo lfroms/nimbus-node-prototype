@@ -17,7 +17,7 @@ export default class EnvironmentCanadaDatamart extends RESTDataSource implements
   private axiosClient = Axios.create({
     baseURL: this.baseURL,
     headers: { 'Cache-Control': 'no-cache' },
-    adapter: throttleAdapterEnhancer(Axios.defaults.adapter!, { threshold: 120_000 }) // 2 minutes
+    adapter: throttleAdapterEnhancer(Axios.defaults.adapter!, { threshold: 120 * 1000 }) // 2 minutes
   });
 
   public async getWeather(
