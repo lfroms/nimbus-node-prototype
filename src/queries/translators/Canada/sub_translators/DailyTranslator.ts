@@ -73,13 +73,16 @@ export default class DailyTranslator implements Translator<Daily[]> {
   }
 
   private createTimeForItem(index: number): number {
-    const forecastIssue = moment(this.forecastIssueUNIXTime);
-    const now = moment();
-    const yesterday = now.clone().subtract(1, 'day');
+    const forecastIssue = moment.unix(this.forecastIssueUNIXTime);
+    const today = moment().startOf('day');
+    const yesterday = today
+      .clone()
+      .subtract(1, 'day')
+      .startOf('day');
 
-    const startsYesterday = forecastIssue.date() === yesterday.date();
+    const startsYesterday = forecastIssue.dayOfYear() === yesterday.dayOfYear();
 
-    const startDate = startsYesterday ? yesterday.startOf('day') : now.startOf('day');
+    const startDate = startsYesterday ? yesterday : today;
 
     return startDate.add(index, 'days').unix();
   }
