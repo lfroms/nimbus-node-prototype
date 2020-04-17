@@ -8,6 +8,8 @@ export default class Rainviewer extends RESTDataSource implements RadarTimestamp
   }
 
   public async getData(): Promise<string> {
+    this.memoizedResults.clear();
+
     const data = await this.get(
       'public/maps.json',
       {},

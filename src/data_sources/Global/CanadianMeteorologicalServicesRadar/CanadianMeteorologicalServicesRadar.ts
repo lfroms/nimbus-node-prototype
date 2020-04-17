@@ -9,6 +9,8 @@ export default class CanadianMeteorologicalServicesRadar extends RESTDataSource
   }
 
   public async getData(): Promise<string> {
+    this.memoizedResults.clear();
+
     return await this.get(
       'geomet',
       {
@@ -19,6 +21,9 @@ export default class CanadianMeteorologicalServicesRadar extends RESTDataSource
         layers: 'RADAR_1KM_RRAI',
       },
       {
+        cacheOptions: {
+          ttl: 0,
+        },
         cache: 'no-cache',
       }
     );
