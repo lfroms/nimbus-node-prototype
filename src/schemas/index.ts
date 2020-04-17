@@ -8,9 +8,10 @@ export {
   FeelsLikeType,
   Pressure,
   Tendency,
-  Wind
+  Wind,
 } from './DataPoint';
 export { default as HourlySchema, Hourly } from './Hourly';
 export { default as LocationSchema, Coordinate, Location } from './Location';
+export { default as RadarSchema, RadarProvider, RadarTimestamps } from './Radar';
 export { default as TodaySchema, Today } from './Today';
 export { default as WeatherSchema, Weather } from './Weather';

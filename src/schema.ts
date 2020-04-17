@@ -8,7 +8,9 @@ import {
   LocationSchema,
   WeatherSchema,
   Coordinate,
-  TodaySchema
+  TodaySchema,
+  RadarProvider,
+  RadarSchema,
 } from './schemas';
 
 export default gql`
@@ -20,6 +22,7 @@ export default gql`
   ${LocationSchema}
   ${TodaySchema}
   ${WeatherSchema}
+  ${RadarSchema}
 
   type Query {
     """
@@ -31,6 +34,11 @@ export default gql`
     Get weather information given one or more coordinates.
     """
     bulkWeather(coordinates: [CoordinateInput!]!, language: Language = english): [Weather]!
+
+    """
+    Get radar timestamps given a provider.
+    """
+    radarTimestamps(provider: RadarProvider!): [Float!]!
   }
 
   enum Language {
@@ -56,7 +64,11 @@ export interface BulkWeatherQueryArgs {
   language?: Language;
 }
 
+export interface RadarTimestampsQueryArgs {
+  provider: RadarProvider;
+}
+
 export enum Language {
   english = 'e',
-  french = 'f'
+  french = 'f',
 }
