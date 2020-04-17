@@ -14,6 +14,9 @@ export default class Rainviewer extends RESTDataSource implements RadarTimestamp
       'public/maps.json',
       {},
       {
+        cacheOptions: {
+          ttl: 0,
+        },
         cache: 'no-cache',
       }
     );
