@@ -30,6 +30,9 @@ export default class CanadianMeteorologicalServicesRadarTranslator
       output.push(currentTime.unix());
     }
 
+    // Last radar image usually isn't ready on time.
+    output.pop();
+
     return output;
   }
 
